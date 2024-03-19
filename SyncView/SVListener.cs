@@ -1,5 +1,6 @@
 using MessagePack;
 using SVCommon;
+using SVCommon.Packet;
 
 namespace SyncView;
 
@@ -11,7 +12,12 @@ public class SVListener : PacketHandler<SVClient>
         Program.SVClient.SendPing();
     }
 
-    public override void OnBasicMessage(SVClient conn)
+    public override void OnBasicMessage(SVClient conn, BasicMessage msg)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnLogin(SVClient conn, Login login)
     {
         throw new NotImplementedException();
     }
