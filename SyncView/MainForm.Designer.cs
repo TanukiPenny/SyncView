@@ -39,16 +39,18 @@ partial class MainForm
         videoView.Location = new Point(12, 12);
         videoView.MediaPlayer = null;
         videoView.Name = "videoView";
-        videoView.Size = new Size(776, 426);
+        videoView.Size = new Size(1200, 675);
         videoView.TabIndex = 0;
         videoView.Text = "videoView1";
         // 
-        // Form1
+        // MainForm
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(800, 450);
+        ClientSize = new Size(1578, 844);
         Controls.Add(videoView);
+        MaximumSize = new Size(1600, 900);
+        MinimumSize = new Size(1600, 900);
         Name = "MainForm";
         Text = "Form1";
         ((System.ComponentModel.ISupportInitialize)videoView).EndInit();
