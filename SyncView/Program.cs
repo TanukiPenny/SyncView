@@ -11,12 +11,11 @@ static class Program
     static void Main()
     {
         SVClient = new SVClient();
-
-        var a = new BasicMessage
+        var login = new Login()
         {
-            Message = "Testinggg"
+            Nick = "Tester 1"
         };
-        SVClient.Send(a, MessageType.BasicMessage);
+        SVClient.Send(login, MessageType.Login);
         
         ApplicationConfiguration.Initialize();
         Application.Run(new MainForm());
