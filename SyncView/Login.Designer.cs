@@ -28,19 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            SyncViewLogo = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)SyncViewLogo).BeginInit();
             SuspendLayout();
+            // 
+            // SyncViewLogo
+            // 
+            SyncViewLogo.Image = (Image)resources.GetObject("SyncViewLogo.Image");
+            SyncViewLogo.Location = new Point(319, 7);
+            SyncViewLogo.Name = "SyncViewLogo";
+            SyncViewLogo.Size = new Size(541, 132);
+            SyncViewLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            SyncViewLogo.TabIndex = 0;
+            SyncViewLogo.TabStop = false;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(0, 0, 64);
+            BackColor = Color.MidnightBlue;
             ClientSize = new Size(1178, 684);
+            Controls.Add(SyncViewLogo);
             Name = "Login";
             Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)SyncViewLogo).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private PictureBox SyncViewLogo;
     }
 }
