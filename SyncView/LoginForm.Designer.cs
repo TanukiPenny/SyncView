@@ -1,6 +1,6 @@
 ﻿namespace SyncView
 {
-    partial class Login
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             SyncViewLogo = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)SyncViewLogo).BeginInit();
             SuspendLayout();
@@ -50,7 +50,7 @@
             BackColor = Color.MidnightBlue;
             ClientSize = new Size(1178, 684);
             Controls.Add(SyncViewLogo);
-            Name = "Login";
+            Name = "LoginForm";
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)SyncViewLogo).EndInit();
             ResumeLayout(false);
