@@ -52,7 +52,7 @@ partial class MainForm
         MaximumSize = new Size(1600, 900);
         MinimumSize = new Size(1600, 900);
         Name = "MainForm";
-        Text = "Form1";
+        Text = "SyncView";
         ((System.ComponentModel.ISupportInitialize)videoView).EndInit();
         ResumeLayout(false);
     }
