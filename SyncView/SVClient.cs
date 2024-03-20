@@ -26,7 +26,6 @@ public class SVClient : TcpClient
     {
         while (!Shutdown)
         {
-            Console.WriteLine("a");
             if (!IsConnected())
             {
                 Connect("127.0.0.1", 9052);
