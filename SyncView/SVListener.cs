@@ -8,13 +8,13 @@ public class SVListener : PacketHandler<SVClient>
 {
     public override void OnPing(SVClient conn)
     {
-        Console.WriteLine("Ping!");
+        Console.WriteLine("Ping Received!");
         Program.SVClient.SendPing();
     }
 
     public override void OnBasicMessage(SVClient conn, BasicMessage msg)
     {
-        throw new NotImplementedException();
+        Console.WriteLine(msg);
     }
 
     public override void OnLogin(SVClient conn, Login login)
@@ -24,14 +24,17 @@ public class SVListener : PacketHandler<SVClient>
 
     public override void OnSerializationException(MessagePackSerializationException exception, int packetID)
     {
-        throw new NotImplementedException();    }
+        Console.WriteLine(exception);    
+    }
 
     public override void OnByteLengthMismatch(SVClient conn, int readBytes, int totalBytes)
     {
-        throw new NotImplementedException();    }
+        Console.WriteLine(readBytes);   
+        Console.WriteLine(totalBytes);   
+    }
 
     public override void OnPacketHandlerException(Exception exception, int packetID)
     {
-        throw new NotImplementedException();    
+        Console.WriteLine(exception);   
     }
 }
