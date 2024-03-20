@@ -4,9 +4,6 @@ namespace SyncView;
 
 public partial class MainForm : Form
 {
-    LibVLC _libVLC;
-    MediaPlayer _mediaPlayer;
-    
     public MainForm()
     {
         InitializeComponent();
@@ -17,12 +14,7 @@ public partial class MainForm : Form
     private void VideoView_Loaded()
     {
         Core.Initialize();
-        
-        _libVLC = new LibVLC();
-        _mediaPlayer = new MediaPlayer(_libVLC);
 
-        videoView.MediaPlayer = _mediaPlayer;
-
-        _mediaPlayer.Play(new Media(_libVLC, new Uri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")));
+        videoView.MediaPlayer = Program.MediaManager.Player;
     }
 }
