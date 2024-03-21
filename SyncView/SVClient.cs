@@ -1,36 +1,37 @@
-using LiteNetLib;
 using MessagePack;
 using SVCommon;
+using SVCommon.Packet;
 using Yggdrasil.Network.Framing;
 using Yggdrasil.Network.TCP;
 
 namespace SyncView;
 
-public class SVClient : TcpClient
+public class SvClient : TcpClient
 {
-    public SVListener Listener;
+    private readonly SvListener _listener;
 
-    private LengthPrefixFramer _framer = new(20000);
+    private readonly string _nick;
+    public bool IsHost;
+
+    private readonly LengthPrefixFramer _framer = new(20000);
 
     public bool Shutdown = false;
 
-    public SVClient()
+    public SvClient(string nick)
     {
-        Listener = new SVListener();
+        _nick = nick;
+        _listener = new SvListener();
         _framer.MessageReceived += FramerReceivedData;
-
-        Task.Run(ClientLoop);
     }
 
-    private void ClientLoop()
+    public void Connect()
     {
-        while (!Shutdown)
+        Connect("127.0.0.1", 9052);
+        var login = new Login
         {
-            if (!IsConnected())
-            {
-                Connect("127.0.0.1", 9052);
-            }
-        }
+            Nick = _nick
+        };
+        Send(login, MessageType.Login);
     }
 
     protected override void OnDisconnect(ConnectionCloseType type)
@@ -41,11 +42,6 @@ public class SVClient : TcpClient
     protected override void OnReceiveException(Exception ex)
     {
         Console.WriteLine(ex);
-    }
-
-    public bool IsConnected()
-    {
-        return Status == ClientStatus.Connected;
     }
 
     public void DisconnectClient()
@@ -65,13 +61,13 @@ public class SVClient : TcpClient
             return;
         }
 
-        int packetID = BitConverter.ToInt32(bytes, 0);
+        int packetId = BitConverter.ToInt32(bytes, 0);
 
         byte[] finalBytes = new byte[bytes.Length - sizeof(int)];
 
         Array.Copy(bytes, sizeof(int), finalBytes, 0, finalBytes.Length);
 
-        Listener.HandlePacket(this, finalBytes, packetID);
+        _listener.HandlePacket(this, finalBytes, packetId);
     }
 
     public void SendPing()
@@ -82,7 +78,7 @@ public class SVClient : TcpClient
         Send(_framer.Frame(bytes.ToArray()));
     }
 
-    public void Send<T>(T obj, MessageType packetId)
+    private void Send<T>(T obj, MessageType packetId)
     {
         List<byte> bytes = new();
         bytes.AddRange(BitConverter.GetBytes((int)packetId));

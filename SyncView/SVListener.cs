@@ -4,36 +4,57 @@ using SVCommon.Packet;
 
 namespace SyncView;
 
-public class SVListener : PacketHandler<SVClient>
+public class SvListener : PacketHandler<SvClient>
 {
-    public override void OnPing(SVClient conn)
+    public override void OnPing(SvClient conn)
     {
         Console.WriteLine("Ping Received!");
-        Program.SVClient.SendPing();
+        Program.SvClient?.SendPing();
     }
 
-    public override void OnBasicMessage(SVClient conn, BasicMessage msg)
+    public override void OnBasicMessage(SvClient conn, BasicMessage msg)
     {
         Console.WriteLine(msg);
     }
 
-    public override void OnLogin(SVClient conn, Login login)
+    public override void OnLoginResponse(SvClient conn, LoginResponse loginResponse)
     {
-        throw new NotImplementedException();
+        if (!loginResponse.Success) return;
+        conn.IsHost = loginResponse.Host;
     }
 
-    public override void OnSerializationException(MessagePackSerializationException exception, int packetID)
+    public override void OnDisconnectMessage(SvClient conn, DisconnectMessage disconnectMessage)
+    {
+        
+    }
+
+    public override void OnHostChange(SvClient conn, HostChange hostChange)
+    {
+        
+    }
+
+    public override void OnUserJoin(SvClient conn, UserJoin userJoin)
+    {
+        
+    }
+
+    public override void OnUserLeave(SvClient conn, UserLeave userLeave)
+    {
+        //TODO: Implement this
+    }
+
+    public override void OnSerializationException(MessagePackSerializationException exception, int packetId)
     {
         Console.WriteLine(exception);    
     }
 
-    public override void OnByteLengthMismatch(SVClient conn, int readBytes, int totalBytes)
+    public override void OnByteLengthMismatch(SvClient conn, int readBytes, int totalBytes)
     {
         Console.WriteLine(readBytes);   
         Console.WriteLine(totalBytes);   
     }
 
-    public override void OnPacketHandlerException(Exception exception, int packetID)
+    public override void OnPacketHandlerException(Exception exception, int packetId)
     {
         Console.WriteLine(exception);   
     }
