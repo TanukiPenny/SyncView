@@ -15,6 +15,6 @@ public partial class MainForm : Form
     {
         Core.Initialize();
 
-        videoView.MediaPlayer = Program.MediaManager.Player;
+        videoView.MediaPlayer = Program.MediaManager?.Player;
     }
 }
