@@ -34,9 +34,9 @@ public class MediaManager
         Player.Stop();
     }
 
-    public void SeekTo(TimeSpan timeSpan)
+    public void SeekTo(long time)
     {
-        Player.SeekTo(timeSpan);
+        Player.Time = time;
     }
 
     public void SetVolume(int volume)
