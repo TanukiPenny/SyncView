@@ -8,8 +8,7 @@ public class SvListener : PacketHandler<SvClient>
 {
     public override void OnPing(SvClient conn)
     {
-        Console.WriteLine("Ping Received!");
-        Program.SvClient?.SendPing();
+        conn.SendPing();
     }
 
     public override void OnBasicMessage(SvClient conn, BasicMessage msg)
