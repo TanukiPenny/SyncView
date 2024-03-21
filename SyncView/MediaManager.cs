@@ -1,4 +1,6 @@
+using HtmlAgilityPack;
 using LibVLCSharp.Shared;
+using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace SyncView;
 
@@ -6,12 +8,30 @@ public class MediaManager
 {
     public MediaPlayer Player { get; }
     private readonly LibVLC _libVlc = new();
+    private List<Uri> MediaLinks;
 
     public MediaManager()
     {
         Player = new(_libVlc);
+        MediaLinks = RequestAvailableMedia();
 
-        Play(new Uri("http://15.204.205.117/Ferrari%20Swapped%20Subaru%20at%20the%202023%20Oregon%20Trail%20Rally%20-%20SS5%20Full%20Stage-%282160p24%29.mp4"));
+        Play(MediaLinks.First());
+    }
+
+    public List<Uri> RequestAvailableMedia()
+    {
+        string html = @"http://15.204.205.117/";
+        HtmlWeb web = new HtmlWeb();
+        HtmlDocument? htmlDoc = web.Load(html);
+        HtmlNodeCollection? nodes = htmlDoc.DocumentNode.SelectNodes("//a");
+        nodes.RemoveAt(0);
+        List<Uri> uris = new();
+        foreach (HtmlNode htmlNode in nodes)
+        {
+            uris.Add(new Uri($"http://15.204.205.117/{htmlNode.Attributes.First().Value}"));
+        }
+
+        return uris;
     }
 
     public void Play(Uri? uri = null)
