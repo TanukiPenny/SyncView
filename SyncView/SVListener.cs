@@ -24,17 +24,20 @@ public class SvListener : PacketHandler<SvClient>
 
     public override void OnDisconnectMessage(SvClient conn, DisconnectMessage disconnectMessage)
     {
-        
+        //TODO: Implement this
     }
 
     public override void OnHostChange(SvClient conn, HostChange hostChange)
     {
-        
+        if (conn.Nick == hostChange.Nick)
+        {
+            conn.IsHost = true;
+        }
     }
 
     public override void OnUserJoin(SvClient conn, UserJoin userJoin)
     {
-        
+        //TODO: Implement this
     }
 
     public override void OnUserLeave(SvClient conn, UserLeave userLeave)
