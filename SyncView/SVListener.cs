@@ -37,7 +37,7 @@ public class SvListener : PacketHandler<SvClient>
 
     public override void OnNewMedia(SvClient conn, NewMedia newMedia)
     {
-        //TODO: Implement this
+        Program.MainForm.MediaManager?.Play(newMedia.Uri);
     }
 
     public override void OnTimeSync(SvClient conn, TimeSync timeSync)

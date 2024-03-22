@@ -12,30 +12,14 @@ public class MediaManager
     private readonly LibVLC _libVlc = new();
     private List<Uri> MediaLinks;
     private Thread? _syncLoopThread;
-    private bool _stopSync = false;
-    private bool _paused = false;
+    private bool _stopSync;
 
     public MediaManager()
     {
         Player = new(_libVlc);
         MediaLinks = RequestAvailableMedia();
 
-        Player.Playing += OnPlaying;
-        Player.Stopped += OnStopped;
-
         Play(MediaLinks.First());
-    }
-    
-    private void OnStopped(object? sender, EventArgs e)
-    {
-        _stopSync = true;
-    }
-    
-    private void OnPlaying(object? sender, EventArgs e)
-    {
-        if (!Program.MainForm.SvClient.IsHost) return;
-        _syncLoopThread = new Thread(SyncLoop);
-        _syncLoopThread.Start();
     }
     
     public void HandleTimeSync(TimeSync timeSync)
@@ -49,7 +33,7 @@ public class MediaManager
     
     private void SyncLoop()
     {
-        while (!_paused || !_stopSync)
+        while (!_stopSync)
         {
             var timeSync = new TimeSync
             {
@@ -58,18 +42,17 @@ public class MediaManager
             Program.MainForm.SvClient?.Send(timeSync, MessageType.TimeSync);
             Thread.Sleep(500);
         }
-    
         _stopSync = false;
     }
     
     public List<Uri> RequestAvailableMedia()
     {
-        string html = @"http://15.204.205.117/";
         HtmlWeb web = new HtmlWeb();
-        HtmlDocument? htmlDoc = web.Load(html);
+        HtmlDocument? htmlDoc = web.Load("http://15.204.205.117/");
         HtmlNodeCollection? nodes = htmlDoc.DocumentNode.SelectNodes("//a");
         nodes.RemoveAt(0);
         List<Uri> uris = new();
+        
         foreach (HtmlNode htmlNode in nodes)
         {
             uris.Add(new Uri($"http://15.204.205.117/{htmlNode.Attributes.First().Value}"));
@@ -80,8 +63,6 @@ public class MediaManager
     
     public void Play(Uri? uri = null)
     {
-        _paused = false;
-        _stopSync = false;
         if (uri == null)
         {
             Player.Play();
@@ -89,16 +70,21 @@ public class MediaManager
         }
     
         Player.Play(new Media(_libVlc, uri));
+        
+        if (!Program.MainForm.SvClient.IsHost) return;
+        _syncLoopThread = new Thread(SyncLoop);
+        _syncLoopThread.Start();
     }
     
     public void Pause()
     {
-        _paused = true;
+        _stopSync = true;
         Player.Pause();
     }
     
     public void Stop()
     {
+        _stopSync = true;
         Player.Stop();
     }
     
