@@ -20,6 +20,7 @@ public class SvListener : PacketHandler<SvClient>
     {
         if (!loginResponse.Success) return;
         conn.IsHost = loginResponse.Host;
+        Console.WriteLine(conn);
     }
 
     public override void OnDisconnectMessage(SvClient conn, DisconnectMessage disconnectMessage)

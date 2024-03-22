@@ -10,7 +10,7 @@ public class MediaManager
 {
     public MediaPlayer Player { get; }
     private readonly LibVLC _libVlc = new();
-    private List<Uri> MediaLinks;
+    public List<Uri> MediaLinks;
     private Thread? _syncLoopThread;
     private bool _stopSync;
 
@@ -18,8 +18,14 @@ public class MediaManager
     {
         Player = new(_libVlc);
         MediaLinks = RequestAvailableMedia();
-
-        Play(MediaLinks.First());
+        Player.Playing += OnPlaying;
+    }
+    
+    private void OnPlaying(object? sender, EventArgs e)
+    {
+        if (!Program.MainForm.SvClient.IsHost) return;
+        _syncLoopThread = new Thread(SyncLoop);
+        _syncLoopThread.Start();
     }
     
     public void HandleTimeSync(TimeSync timeSync)
@@ -70,10 +76,6 @@ public class MediaManager
         }
     
         Player.Play(new Media(_libVlc, uri));
-        
-        if (!Program.MainForm.SvClient.IsHost) return;
-        _syncLoopThread = new Thread(SyncLoop);
-        _syncLoopThread.Start();
     }
     
     public void Pause()
