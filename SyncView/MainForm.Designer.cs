@@ -36,7 +36,8 @@ partial class MainForm
         // videoView
         // 
         videoView.BackColor = Color.Black;
-        videoView.Location = new Point(12, 12);
+        videoView.Location = new Point(8, 7);
+        videoView.Margin = new Padding(2, 2, 2, 2);
         videoView.MediaPlayer = null;
         videoView.Name = "videoView";
         videoView.Size = new Size(1200, 675);
@@ -45,10 +46,11 @@ partial class MainForm
         // 
         // MainForm
         // 
-        AutoScaleDimensions = new SizeF(10F, 25F);
+        AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(1578, 844);
+        ClientSize = new Size(1584, 861);
         Controls.Add(videoView);
+        Margin = new Padding(2, 2, 2, 2);
         MaximumSize = new Size(1600, 900);
         MinimumSize = new Size(1600, 900);
         Name = "MainForm";
