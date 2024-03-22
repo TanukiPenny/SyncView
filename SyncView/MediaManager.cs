@@ -1,5 +1,7 @@
 using HtmlAgilityPack;
 using LibVLCSharp.Shared;
+using SVCommon;
+using SVCommon.Packet;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace SyncView;
@@ -9,13 +11,55 @@ public class MediaManager
     public MediaPlayer Player { get; }
     private readonly LibVLC _libVlc = new();
     private List<Uri> MediaLinks;
+    private Thread? _syncLoopThread;
+    private bool _stopSync = false;
+    private bool _paused = false;
 
     public MediaManager()
     {
         Player = new(_libVlc);
         MediaLinks = RequestAvailableMedia();
+        
+        Player.Playing += OnPlaying;
+        Player.Stopped += OnStopped;
 
         Play(MediaLinks.First());
+    }
+
+    private void OnStopped(object? sender, EventArgs e)
+    {
+        _stopSync = true;
+    }
+
+    private void OnPlaying(object? sender, EventArgs e)
+    {
+        if (!Program.MainForm.SvClient.IsHost) return;
+        _syncLoopThread = new Thread(SyncLoop);
+        _syncLoopThread.Start();
+    }
+
+    public void HandleTimeSync(TimeSync timeSync)
+    {
+        long dif = Math.Abs(Player.Time - timeSync.Time);
+        if (dif > 500)
+        {
+            SeekTo(timeSync.Time);
+        }
+    }
+    
+    private void SyncLoop()
+    {
+        while (!_paused || !_stopSync)
+        {
+            var timeSync = new TimeSync
+            {
+                Time = Player.Time
+            };
+            Program.MainForm.SvClient?.Send(timeSync, MessageType.TimeSync);
+            Thread.Sleep(500);
+        }
+
+        _stopSync = false;
     }
 
     public List<Uri> RequestAvailableMedia()
@@ -36,6 +80,7 @@ public class MediaManager
 
     public void Play(Uri? uri = null)
     {
+        _paused = false;
         if (uri == null)
         {
             Player.Play();
@@ -46,6 +91,7 @@ public class MediaManager
 
     public void Pause()
     {
+        _paused = true;
         Player.Pause();
     }
 

@@ -4,8 +4,16 @@ namespace SyncView;
 
 public partial class MainForm : Form
 {
+    public SvClient? SvClient;
+    public MediaManager? MediaManager;
+    
     public MainForm()
     {
+        MediaManager = new MediaManager();
+        
+        SvClient = new SvClient("testing 1");
+        SvClient.Connect();
+        
         InitializeComponent();
         
         VideoView_Loaded();
@@ -15,6 +23,6 @@ public partial class MainForm : Form
     {
         Core.Initialize();
 
-        videoView.MediaPlayer = Program.MediaManager?.Player;
+        videoView.MediaPlayer = MediaManager?.Player;
     }
 }

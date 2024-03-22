@@ -2,19 +2,12 @@ namespace SyncView;
 
 static class Program
 {
-    public static SvClient? SvClient;
-    public static MediaManager? MediaManager;
+    public static MainForm MainForm = new();
     
     [STAThread]
     static void Main()
     {
-        MediaManager = new MediaManager();
-        
-        SvClient = new SvClient("testing");
-        SvClient.Connect();
-        
-        
         ApplicationConfiguration.Initialize();
-        Application.Run(new MainForm());
+        Application.Run(MainForm);
     }
 }

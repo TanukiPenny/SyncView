@@ -35,6 +35,16 @@ public class SvListener : PacketHandler<SvClient>
         }
     }
 
+    public override void OnNewMedia(SvClient conn, NewMedia newMedia)
+    {
+        //TODO: Implement this
+    }
+
+    public override void OnTimeSync(SvClient conn, TimeSync timeSync)
+    {
+        Program.MainForm.MediaManager?.HandleTimeSync(timeSync);
+    }
+
     public override void OnUserJoin(SvClient conn, UserJoin userJoin)
     {
         //TODO: Implement this

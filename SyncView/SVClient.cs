@@ -78,7 +78,7 @@ public class SvClient : TcpClient
         Send(_framer.Frame(bytes.ToArray()));
     }
 
-    private void Send<T>(T obj, MessageType packetId)
+    public void Send<T>(T obj, MessageType packetId)
     {
         List<byte> bytes = new();
         bytes.AddRange(BitConverter.GetBytes((int)packetId));
