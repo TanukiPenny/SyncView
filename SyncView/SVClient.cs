@@ -26,7 +26,7 @@ public class SvClient : TcpClient
 
     public void Connect()
     {
-        Connect("127.0.0.1", 9052);
+        Connect("15.204.205.117", 9052);
         var login = new Login
         {
             Nick = Nick
