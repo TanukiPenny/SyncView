@@ -34,6 +34,7 @@
             PasswordField = new TextBox();
             UsernameLabel = new Label();
             PasswordLabel = new Label();
+            LoginButton = new Button();
             ((System.ComponentModel.ISupportInitialize)SyncViewLogo).BeginInit();
             SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             // 
             UsernameField.BackColor = Color.DarkSlateBlue;
             UsernameField.ForeColor = Color.White;
-            UsernameField.Location = new Point(284, 445);
+            UsernameField.Location = new Point(284, 402);
             UsernameField.Name = "UsernameField";
             UsernameField.Size = new Size(610, 31);
             UsernameField.TabIndex = 1;
@@ -60,7 +61,7 @@
             // 
             PasswordField.BackColor = Color.DarkSlateBlue;
             PasswordField.ForeColor = Color.White;
-            PasswordField.Location = new Point(284, 552);
+            PasswordField.Location = new Point(284, 509);
             PasswordField.Name = "PasswordField";
             PasswordField.Size = new Size(610, 31);
             PasswordField.TabIndex = 1;
@@ -70,7 +71,7 @@
             UsernameLabel.AutoSize = true;
             UsernameLabel.Font = new Font("Orbitron", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             UsernameLabel.ForeColor = Color.White;
-            UsernameLabel.Location = new Point(284, 407);
+            UsernameLabel.Location = new Point(284, 364);
             UsernameLabel.Name = "UsernameLabel";
             UsernameLabel.Size = new Size(116, 22);
             UsernameLabel.TabIndex = 2;
@@ -81,11 +82,24 @@
             PasswordLabel.AutoSize = true;
             PasswordLabel.Font = new Font("Orbitron", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             PasswordLabel.ForeColor = Color.White;
-            PasswordLabel.Location = new Point(284, 513);
+            PasswordLabel.Location = new Point(284, 470);
             PasswordLabel.Name = "PasswordLabel";
             PasswordLabel.Size = new Size(115, 22);
             PasswordLabel.TabIndex = 3;
             PasswordLabel.Text = "Password:";
+            // 
+            // LoginButton
+            // 
+            LoginButton.BackColor = Color.SlateBlue;
+            LoginButton.Font = new Font("Orbitron", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LoginButton.ForeColor = Color.White;
+            LoginButton.Location = new Point(472, 583);
+            LoginButton.Name = "LoginButton";
+            LoginButton.Size = new Size(234, 55);
+            LoginButton.TabIndex = 4;
+            LoginButton.Text = "Login";
+            LoginButton.UseVisualStyleBackColor = false;
+            LoginButton.Click += LoginButton_Click;
             // 
             // LoginForm
             // 
@@ -93,6 +107,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MidnightBlue;
             ClientSize = new Size(1178, 684);
+            Controls.Add(LoginButton);
             Controls.Add(PasswordLabel);
             Controls.Add(UsernameLabel);
             Controls.Add(PasswordField);
@@ -112,5 +127,6 @@
         private TextBox PasswordField;
         private Label UsernameLabel;
         private Label PasswordLabel;
+        private Button LoginButton;
     }
 }

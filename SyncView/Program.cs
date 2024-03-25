@@ -8,7 +8,10 @@ static class Program
     static void Main()
     {
         ApplicationConfiguration.Initialize();
-        MainForm = new MainForm();
-        Application.Run(MainForm);
+        LoginForm frmLogin = new LoginForm();
+        if (frmLogin.ShowDialog() == DialogResult.OK )
+        {
+            Application.Run(MainForm);
+        }
     }
 }
