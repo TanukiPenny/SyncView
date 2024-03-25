@@ -30,6 +30,7 @@ partial class MainForm
     private void InitializeComponent()
     {
         videoView = new LibVLCSharp.WinForms.VideoView();
+        testPlay = new Button();
         ((System.ComponentModel.ISupportInitialize)videoView).BeginInit();
         SuspendLayout();
         // 
@@ -37,20 +38,30 @@ partial class MainForm
         // 
         videoView.BackColor = Color.Black;
         videoView.Location = new Point(8, 7);
-        videoView.Margin = new Padding(2, 2, 2, 2);
+        videoView.Margin = new Padding(2);
         videoView.MediaPlayer = null;
         videoView.Name = "videoView";
         videoView.Size = new Size(1200, 675);
         videoView.TabIndex = 0;
         videoView.Text = "videoView1";
         // 
+        // testPlay
+        // 
+        testPlay.Location = new Point(441, 748);
+        testPlay.Name = "testPlay";
+        testPlay.Size = new Size(192, 43);
+        testPlay.TabIndex = 1;
+        testPlay.Text = "Test Play";
+        testPlay.UseVisualStyleBackColor = true;
+        testPlay.Click += testPlay_Click;
+        // 
         // MainForm
         // 
-        AutoScaleDimensions = new SizeF(7F, 15F);
-        AutoScaleMode = AutoScaleMode.Font;
+        AutoScaleMode = AutoScaleMode.None;
         ClientSize = new Size(1584, 861);
+        Controls.Add(testPlay);
         Controls.Add(videoView);
-        Margin = new Padding(2, 2, 2, 2);
+        Margin = new Padding(2);
         MaximumSize = new Size(1600, 900);
         MinimumSize = new Size(1600, 900);
         Name = "MainForm";
@@ -62,4 +73,5 @@ partial class MainForm
     #endregion
 
     private LibVLCSharp.WinForms.VideoView videoView;
+    private Button testPlay;
 }

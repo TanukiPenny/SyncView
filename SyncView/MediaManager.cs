@@ -23,7 +23,7 @@ public class MediaManager
     
     private void OnPlaying(object? sender, EventArgs e)
     {
-        if (!Program.MainForm.SvClient.IsHost) return;
+        if (Program.MainForm.SvClient.IsHost) return;
         _syncLoopThread = new Thread(SyncLoop);
         _syncLoopThread.Start();
     }

@@ -33,15 +33,11 @@
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            if (UsernameField.Text == PasswordField.Text)
+            //TODO: Make it check to make sure it connects properly with nick before closing
+            if (true)
             {
-                this.DialogResult = DialogResult.OK; // Sends user to main program
-                var frm = new MainForm();
-                frm.Location = this.Location;
-                frm.StartPosition = FormStartPosition.Manual;
-                frm.FormClosing += delegate { this.Show(); };
-                frm.Show();
-                this.Hide();
+                DialogResult = DialogResult.OK; // Sends user to main program if ok
+                Hide();
             }
             else
             {

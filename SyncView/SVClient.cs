@@ -10,16 +10,15 @@ public class SvClient : TcpClient
 {
     private readonly SvListener _listener;
 
-    public readonly string Nick;
+    public string Nick;
     public bool IsHost;
 
     private readonly LengthPrefixFramer _framer = new(20000);
 
     public bool Shutdown = false;
 
-    public SvClient(string nick)
+    public SvClient()
     {
-        Nick = nick;
         _listener = new SvListener();
         _framer.MessageReceived += FramerReceivedData;
     }
@@ -27,9 +26,14 @@ public class SvClient : TcpClient
     public void Connect()
     {
         Connect("15.204.205.117", 9052);
+    }
+
+    public void Login(string nick)
+    {
+        Nick = nick;
         var login = new Login
         {
-            Nick = Nick
+            Nick = nick
         };
         Send(login, MessageType.Login);
     }
