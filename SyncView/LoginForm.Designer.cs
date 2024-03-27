@@ -35,7 +35,9 @@
             UsernameLabel = new Label();
             PasswordLabel = new Label();
             LoginButton = new Button();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)SyncViewLogo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // SyncViewLogo
@@ -50,7 +52,7 @@
             // 
             // UsernameField
             // 
-            UsernameField.BackColor = Color.DarkSlateBlue;
+            UsernameField.BackColor = Color.BlueViolet;
             UsernameField.ForeColor = Color.White;
             UsernameField.Location = new Point(284, 402);
             UsernameField.Name = "UsernameField";
@@ -59,7 +61,7 @@
             // 
             // PasswordField
             // 
-            PasswordField.BackColor = Color.DarkSlateBlue;
+            PasswordField.BackColor = Color.BlueViolet;
             PasswordField.ForeColor = Color.White;
             PasswordField.Location = new Point(284, 509);
             PasswordField.Name = "PasswordField";
@@ -90,7 +92,7 @@
             // 
             // LoginButton
             // 
-            LoginButton.BackColor = Color.SlateBlue;
+            LoginButton.BackColor = Color.MediumPurple;
             LoginButton.Font = new Font("Orbitron", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LoginButton.ForeColor = Color.White;
             LoginButton.Location = new Point(472, 583);
@@ -101,12 +103,23 @@
             LoginButton.UseVisualStyleBackColor = false;
             LoginButton.Click += LoginButton_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(424, 126);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(330, 228);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.MidnightBlue;
+            BackColor = Color.DarkViolet;
             ClientSize = new Size(1178, 684);
+            Controls.Add(pictureBox1);
             Controls.Add(LoginButton);
             Controls.Add(PasswordLabel);
             Controls.Add(UsernameLabel);
@@ -116,6 +129,7 @@
             Name = "LoginForm";
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)SyncViewLogo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -128,5 +142,6 @@
         private Label UsernameLabel;
         private Label PasswordLabel;
         private Button LoginButton;
+        private PictureBox pictureBox1;
     }
 }
