@@ -128,6 +128,7 @@
             Controls.Add(PasswordField);
             Controls.Add(UsernameField);
             Controls.Add(SyncViewLogo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "LoginForm";
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)SyncViewLogo).EndInit();

@@ -29,6 +29,7 @@ partial class MainForm
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
         videoView = new LibVLCSharp.WinForms.VideoView();
         testPlay = new Button();
         ((System.ComponentModel.ISupportInitialize)videoView).BeginInit();
@@ -58,9 +59,10 @@ partial class MainForm
         // MainForm
         // 
         AutoScaleMode = AutoScaleMode.None;
-        ClientSize = new Size(1584, 861);
+        ClientSize = new Size(1578, 844);
         Controls.Add(testPlay);
         Controls.Add(videoView);
+        Icon = (Icon)resources.GetObject("$this.Icon");
         Margin = new Padding(2);
         MaximumSize = new Size(1600, 900);
         MinimumSize = new Size(1600, 900);
