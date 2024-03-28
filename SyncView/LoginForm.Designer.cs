@@ -53,19 +53,21 @@
             // UsernameField
             // 
             UsernameField.BackColor = Color.BlueViolet;
+            UsernameField.Font = new Font("Orbitron", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             UsernameField.ForeColor = Color.White;
             UsernameField.Location = new Point(284, 402);
             UsernameField.Name = "UsernameField";
-            UsernameField.Size = new Size(610, 31);
+            UsernameField.Size = new Size(610, 30);
             UsernameField.TabIndex = 1;
             // 
             // PasswordField
             // 
             PasswordField.BackColor = Color.BlueViolet;
+            PasswordField.Font = new Font("Orbitron", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             PasswordField.ForeColor = Color.White;
             PasswordField.Location = new Point(284, 509);
             PasswordField.Name = "PasswordField";
-            PasswordField.Size = new Size(610, 31);
+            PasswordField.Size = new Size(610, 30);
             PasswordField.TabIndex = 1;
             // 
             // UsernameLabel
