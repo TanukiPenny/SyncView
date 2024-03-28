@@ -39,10 +39,6 @@
                 DialogResult = DialogResult.OK; // Sends user to main program if ok
                 Hide();
             }
-            else
-            {
-                MessageBox.Show("Invalid username or password!"); // If username or password is incorrect
-            }
         }
     }
 }
