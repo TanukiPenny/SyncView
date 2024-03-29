@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace SyncView;
 
 static class Program
@@ -7,6 +9,8 @@ static class Program
     [STAThread]
     static void Main()
     {
+        AllocConsole();
+        
         ApplicationConfiguration.Initialize();
         
         LoginForm frmLogin = new LoginForm();
@@ -15,4 +19,8 @@ static class Program
             Application.Run(MainForm);
         }
     }
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    static extern bool AllocConsole();
 }

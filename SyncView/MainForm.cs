@@ -10,9 +10,6 @@ public partial class MainForm : Form
 
     public MainForm()
     {
-        SvClient.Connect();
-        SvClient.Login("testimggggg");
-
         InitializeComponent();
 
         VideoView_Loaded();
@@ -27,6 +24,18 @@ public partial class MainForm : Form
 
     private void testPlay_Click(object sender, EventArgs e)
     {
-        MediaManager?.Play(MediaManager.MediaLinks.First());
+        MediaManager.Play();
+    }
+
+    private void testLogin_Click(object sender, EventArgs e)
+    {
+        SvClient.Connect();
+        SvClient.Login(testNickBox.Text);
+    }
+
+    private void testOpenMediaSelector_Click(object sender, EventArgs e)
+    {
+        MediaSelector mediaSelector = new MediaSelector();
+        mediaSelector.ShowDialog();
     }
 }

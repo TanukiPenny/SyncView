@@ -1,4 +1,4 @@
-﻿namespace SyncView;
+namespace SyncView;
 
 partial class MainForm
 {
@@ -32,6 +32,9 @@ partial class MainForm
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
         videoView = new LibVLCSharp.WinForms.VideoView();
         testPlay = new Button();
+        testNickBox = new TextBox();
+        testLogin = new Button();
+        testOpenMediaSelector = new Button();
         ((System.ComponentModel.ISupportInitialize)videoView).BeginInit();
         SuspendLayout();
         // 
@@ -48,7 +51,7 @@ partial class MainForm
         // 
         // testPlay
         // 
-        testPlay.Location = new Point(441, 748);
+        testPlay.Location = new Point(33, 687);
         testPlay.Name = "testPlay";
         testPlay.Size = new Size(192, 43);
         testPlay.TabIndex = 1;
@@ -56,10 +59,41 @@ partial class MainForm
         testPlay.UseVisualStyleBackColor = true;
         testPlay.Click += testPlay_Click;
         // 
+        // testNickBox
+        // 
+        testNickBox.Location = new Point(873, 693);
+        testNickBox.Name = "testNickBox";
+        testNickBox.Size = new Size(394, 31);
+        testNickBox.TabIndex = 2;
+        testNickBox.Text = "Tester 1";
+        // 
+        // testLogin
+        // 
+        testLogin.Location = new Point(971, 754);
+        testLogin.Name = "testLogin";
+        testLogin.Size = new Size(187, 40);
+        testLogin.TabIndex = 3;
+        testLogin.Text = "Test Login";
+        testLogin.UseVisualStyleBackColor = true;
+        testLogin.Click += testLogin_Click;
+        // 
+        // testOpenMediaSelector
+        // 
+        testOpenMediaSelector.Location = new Point(363, 757);
+        testOpenMediaSelector.Name = "testOpenMediaSelector";
+        testOpenMediaSelector.Size = new Size(205, 43);
+        testOpenMediaSelector.TabIndex = 4;
+        testOpenMediaSelector.Text = "Test Media Selector";
+        testOpenMediaSelector.UseVisualStyleBackColor = true;
+        testOpenMediaSelector.Click += testOpenMediaSelector_Click;
+        // 
         // MainForm
         // 
         AutoScaleMode = AutoScaleMode.None;
         ClientSize = new Size(1578, 844);
+        Controls.Add(testOpenMediaSelector);
+        Controls.Add(testLogin);
+        Controls.Add(testNickBox);
         Controls.Add(testPlay);
         Controls.Add(videoView);
         Icon = (Icon)resources.GetObject("$this.Icon");
@@ -70,10 +104,14 @@ partial class MainForm
         Text = "SyncView";
         ((System.ComponentModel.ISupportInitialize)videoView).EndInit();
         ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
 
     private LibVLCSharp.WinForms.VideoView videoView;
     private Button testPlay;
+    private TextBox testNickBox;
+    private Button testLogin;
+    private Button testOpenMediaSelector;
 }

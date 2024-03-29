@@ -10,20 +10,19 @@ public class MediaManager
 {
     public MediaPlayer Player { get; }
     private readonly LibVLC _libVlc = new();
-    public List<Uri> MediaLinks;
+    public Uri? CurrentMedia;
     private Thread? _syncLoopThread;
     private bool _stopSync;
 
     public MediaManager()
     {
         Player = new(_libVlc);
-        MediaLinks = RequestAvailableMedia();
         Player.Playing += OnPlaying;
     }
     
     private void OnPlaying(object? sender, EventArgs e)
     {
-        if (Program.MainForm.SvClient.IsHost) return;
+        if (!Program.MainForm.SvClient.IsHost) return;
         _syncLoopThread = new Thread(SyncLoop);
         _syncLoopThread.Start();
     }
@@ -39,6 +38,7 @@ public class MediaManager
     
     private void SyncLoop()
     {
+        Console.WriteLine("Sync Started!");
         while (!_stopSync)
         {
             var timeSync = new TimeSync
@@ -50,32 +50,26 @@ public class MediaManager
         }
         _stopSync = false;
     }
-    
-    public List<Uri> RequestAvailableMedia()
+
+    public void HandleNewMedia(Uri uri)
     {
-        HtmlWeb web = new HtmlWeb();
-        HtmlDocument? htmlDoc = web.Load("http://15.204.205.117/");
-        HtmlNodeCollection? nodes = htmlDoc.DocumentNode.SelectNodes("//a");
-        nodes.RemoveAt(0);
-        List<Uri> uris = new();
-        
-        foreach (HtmlNode htmlNode in nodes)
-        {
-            uris.Add(new Uri($"http://15.204.205.117/{htmlNode.Attributes.First().Value}"));
-        }
-    
-        return uris;
+        CurrentMedia = uri;
     }
     
-    public void Play(Uri? uri = null)
+    public void Play()
     {
-        if (uri == null)
-        {
-            Player.Play();
-            return;
-        }
+        if (CurrentMedia == null) return;
     
-        Player.Play(new Media(_libVlc, uri));
+        Player.Play(new Media(_libVlc, CurrentMedia));
+
+        if (!Program.MainForm.SvClient.IsHost) return;
+        
+        var newMedia = new NewMedia
+        {
+            Uri = CurrentMedia
+        };
+        Console.WriteLine("Sending New media");
+        Program.MainForm.SvClient.Send(newMedia, MessageType.NewMedia);
     }
     
     public void Pause()
