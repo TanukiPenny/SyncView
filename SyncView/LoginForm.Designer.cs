@@ -52,9 +52,9 @@
             // 
             // UsernameField
             // 
-            UsernameField.BackColor = Color.BlueViolet;
+            UsernameField.BackColor = Color.GhostWhite;
             UsernameField.Font = new Font("Orbitron", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            UsernameField.ForeColor = Color.White;
+            UsernameField.ForeColor = Color.Black;
             UsernameField.Location = new Point(284, 402);
             UsernameField.Name = "UsernameField";
             UsernameField.Size = new Size(610, 30);
@@ -62,9 +62,9 @@
             // 
             // PasswordField
             // 
-            PasswordField.BackColor = Color.BlueViolet;
+            PasswordField.BackColor = Color.GhostWhite;
             PasswordField.Font = new Font("Orbitron", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PasswordField.ForeColor = Color.White;
+            PasswordField.ForeColor = Color.Black;
             PasswordField.Location = new Point(284, 509);
             PasswordField.Name = "PasswordField";
             PasswordField.Size = new Size(610, 30);
@@ -74,7 +74,7 @@
             // 
             UsernameLabel.AutoSize = true;
             UsernameLabel.Font = new Font("Orbitron", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            UsernameLabel.ForeColor = Color.White;
+            UsernameLabel.ForeColor = Color.GhostWhite;
             UsernameLabel.Location = new Point(284, 364);
             UsernameLabel.Name = "UsernameLabel";
             UsernameLabel.Size = new Size(116, 22);
@@ -85,7 +85,7 @@
             // 
             PasswordLabel.AutoSize = true;
             PasswordLabel.Font = new Font("Orbitron", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PasswordLabel.ForeColor = Color.White;
+            PasswordLabel.ForeColor = Color.GhostWhite;
             PasswordLabel.Location = new Point(284, 470);
             PasswordLabel.Name = "PasswordLabel";
             PasswordLabel.Size = new Size(115, 22);
@@ -94,7 +94,7 @@
             // 
             // LoginButton
             // 
-            LoginButton.BackColor = Color.MediumPurple;
+            LoginButton.BackColor = Color.SlateBlue;
             LoginButton.Font = new Font("Orbitron", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LoginButton.ForeColor = Color.White;
             LoginButton.Location = new Point(472, 583);
@@ -119,7 +119,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkViolet;
+            BackColor = Color.LightSteelBlue;
             ClientSize = new Size(1178, 684);
             Controls.Add(pictureBox1);
             Controls.Add(LoginButton);
