@@ -1,4 +1,5 @@
 using MessagePack;
+using Serilog;
 using SVCommon;
 using SVCommon.Packet;
 using Yggdrasil.Network.Framing;
@@ -40,12 +41,12 @@ public class SvClient : TcpClient
 
     protected override void OnDisconnect(ConnectionCloseType type)
     {
-        Console.WriteLine(type);
+        Log.Warning("Connection with server was {type}", type.ToString().ToLower());
     }
 
     protected override void OnReceiveException(Exception ex)
     {
-        Console.WriteLine(ex);
+        Log.Error(ex, "Exception in on receive");
     }
 
     public void DisconnectClient()

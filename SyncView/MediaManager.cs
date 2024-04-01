@@ -1,5 +1,6 @@
 using HtmlAgilityPack;
 using LibVLCSharp.Shared;
+using Serilog;
 using SVCommon;
 using SVCommon.Packet;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
@@ -38,7 +39,7 @@ public class MediaManager
     
     private void SyncLoop()
     {
-        Console.WriteLine("Sync Started!");
+        Log.Information("Media time sync started");
         while (!_stopSync)
         {
             var timeSync = new TimeSync
@@ -68,7 +69,7 @@ public class MediaManager
         {
             Uri = CurrentMedia
         };
-        Console.WriteLine("Sending New media");
+        Log.Information("Sending new media");
         Program.MainForm.SvClient.Send(newMedia, MessageType.NewMedia);
     }
     

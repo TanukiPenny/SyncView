@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using Serilog;
 
 namespace SyncView;
 
@@ -10,6 +11,9 @@ static class Program
     static void Main()
     {
         AllocConsole();
+        
+        Log.Logger = new LoggerConfiguration().WriteTo.Console(outputTemplate:
+            "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}").MinimumLevel.Debug().CreateLogger();
         
         ApplicationConfiguration.Initialize();
         
