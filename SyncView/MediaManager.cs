@@ -13,6 +13,7 @@ public class MediaManager
     private readonly LibVLC _libVlc = new();
     public Uri? CurrentMedia;
     private Thread? _syncLoopThread;
+    private Thread? _timeUpdateThread;
     private bool _stopSync;
 
     public MediaManager()
@@ -23,6 +24,8 @@ public class MediaManager
     
     private void OnPlaying(object? sender, EventArgs e)
     {
+        _timeUpdateThread = new Thread(TimeUpdateLoop);
+        _timeUpdateThread.Start();
         if (!Program.MainForm.SvClient.IsHost) return;
         _syncLoopThread = new Thread(SyncLoop);
         _syncLoopThread.Start();
@@ -35,6 +38,16 @@ public class MediaManager
         {
             SeekTo(timeSync.Time);
         }
+    }
+    
+    private void TimeUpdateLoop()
+    {
+        Log.Information("Time Update started");
+        while (!_stopSync)
+        {
+            Program.MainForm.VideoDataUpdate(Player.Time ,Player.Length);
+        }
+        _stopSync = false;
     }
     
     private void SyncLoop()
@@ -60,8 +73,10 @@ public class MediaManager
     public void Play()
     {
         if (CurrentMedia == null) return;
-    
-        Player.Play(new Media(_libVlc, CurrentMedia));
+
+        Media media = new Media(_libVlc, CurrentMedia);
+        
+        Player.Play(media);
 
         if (!Program.MainForm.SvClient.IsHost) return;
         
@@ -87,6 +102,7 @@ public class MediaManager
     
     public void SeekTo(long time)
     {
+        Console.WriteLine($"seek to {time}");
         Player.Time = time;
     }
     

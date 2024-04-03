@@ -35,7 +35,11 @@ partial class MainForm
         testNickBox = new TextBox();
         testLogin = new Button();
         testOpenMediaSelector = new Button();
+        ProgressBar = new TrackBar();
+        timePassed = new Label();
+        timeLeft = new Label();
         ((System.ComponentModel.ISupportInitialize)videoView).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)ProgressBar).BeginInit();
         SuspendLayout();
         // 
         // videoView
@@ -63,7 +67,7 @@ partial class MainForm
         // 
         testNickBox.Location = new Point(873, 693);
         testNickBox.Name = "testNickBox";
-        testNickBox.Size = new Size(394, 31);
+        testNickBox.Size = new Size(394, 23);
         testNickBox.TabIndex = 2;
         testNickBox.Text = "Tester 1";
         // 
@@ -87,10 +91,46 @@ partial class MainForm
         testOpenMediaSelector.UseVisualStyleBackColor = true;
         testOpenMediaSelector.Click += testOpenMediaSelector_Click;
         // 
+        // ProgressBar
+        // 
+        ProgressBar.LargeChange = 10;
+        ProgressBar.Location = new Point(293, 688);
+        ProgressBar.Maximum = 1000000;
+        ProgressBar.Name = "ProgressBar";
+        ProgressBar.Size = new Size(527, 45);
+        ProgressBar.TabIndex = 5;
+        ProgressBar.TickStyle = TickStyle.Both;
+        ProgressBar.Value = 500000;
+        ProgressBar.ValueChanged += progressBar_ValueChanged;
+        ProgressBar.MouseCaptureChanged += progressBar_MouseCaptureChanged;
+        ProgressBar.MouseDown += progressBar_MouseDown;
+        ProgressBar.MouseUp += progressBar_MouseUp;
+        // 
+        // timePassed
+        // 
+        timePassed.AutoSize = true;
+        timePassed.Location = new Point(303, 727);
+        timePassed.Name = "timePassed";
+        timePassed.Size = new Size(38, 15);
+        timePassed.TabIndex = 6;
+        timePassed.Text = "label1";
+        // 
+        // timeLeft
+        // 
+        timeLeft.AutoSize = true;
+        timeLeft.Location = new Point(762, 727);
+        timeLeft.Name = "timeLeft";
+        timeLeft.Size = new Size(38, 15);
+        timeLeft.TabIndex = 7;
+        timeLeft.Text = "label2";
+        // 
         // MainForm
         // 
         AutoScaleMode = AutoScaleMode.None;
-        ClientSize = new Size(1578, 844);
+        ClientSize = new Size(1584, 861);
+        Controls.Add(timeLeft);
+        Controls.Add(timePassed);
+        Controls.Add(ProgressBar);
         Controls.Add(testOpenMediaSelector);
         Controls.Add(testLogin);
         Controls.Add(testNickBox);
@@ -103,6 +143,7 @@ partial class MainForm
         Name = "MainForm";
         Text = "SyncView";
         ((System.ComponentModel.ISupportInitialize)videoView).EndInit();
+        ((System.ComponentModel.ISupportInitialize)ProgressBar).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -114,4 +155,7 @@ partial class MainForm
     private TextBox testNickBox;
     private Button testLogin;
     private Button testOpenMediaSelector;
+    public TrackBar ProgressBar;
+    private Label timePassed;
+    private Label timeLeft;
 }
