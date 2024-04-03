@@ -58,7 +58,7 @@ public partial class MainForm : Form
         string timeLeftText = timeLeftSpan.ToString(@"hh\:mm\:ss");
         timeLeft.Text = timeLeftText;
         
-        if (MouseDown) return;
+        if (_mouseDown) return;
         
         ProgressBar.Value = (int)time;
     }
@@ -73,15 +73,15 @@ public partial class MainForm : Form
         MediaManager.SeekTo(_tempTime);
     }
 
-    public new bool MouseDown = false;
+    private new bool _mouseDown = false;
     
     private void progressBar_MouseDown(object sender, EventArgs e)
     {
-        MouseDown = true;
+        _mouseDown = true;
     }
     
     private void progressBar_MouseUp(object sender, EventArgs e)
     {
-        MouseDown = false;
+        _mouseDown = false;
     }
 }
