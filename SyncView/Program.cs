@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Net.Mime;
 using System.Runtime.InteropServices;
 using Serilog;
@@ -10,6 +11,7 @@ static class Program
     public static MainForm? MainForm;
     public static readonly SvClient SvClient = new();
     public static readonly MediaManager MediaManager = new();
+    public static readonly BindingList<string> ConnectedUsers = new();
     
     [STAThread]
     static void Main()
@@ -17,7 +19,7 @@ static class Program
         AllocConsole();
         
         Log.Logger = new LoggerConfiguration().WriteTo.Console(outputTemplate:
-            "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}").MinimumLevel.Verbose().CreateLogger();
+            "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}").MinimumLevel.Debug().CreateLogger();
         
         ApplicationConfiguration.Initialize();
         

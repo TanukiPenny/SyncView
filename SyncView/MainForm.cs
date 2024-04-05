@@ -10,8 +10,8 @@ public partial class MainForm : Form
     {
         InitializeComponent();
 
-        connectedUsersList.DataSource = ConnectedUsers;
-        ConnectedUsers.Add(Program.SvClient.Nick);
+        connectedUsersList.DataSource = Program.ConnectedUsers;
+        Program.ConnectedUsers.Add(Program.SvClient.Nick);
 
         VideoView_Loaded();
     }
@@ -23,8 +23,6 @@ public partial class MainForm : Form
 
         videoView.MediaPlayer = Program.MediaManager.Player;
     }
-
-    public readonly BindingList<string> ConnectedUsers = new();
 
     private int _tempTime;
 
