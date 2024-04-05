@@ -15,6 +15,16 @@ public partial class MainForm : Form
 
         VideoView_Loaded();
     }
+    
+    protected override void OnFormClosing(FormClosingEventArgs e)
+    {
+        base.OnFormClosing(e);
+
+        if (e.CloseReason == CloseReason.WindowsShutDown) return;
+        
+        // Gotta really make sure its dead
+        Application.Exit();    
+    }
 
 
     private void VideoView_Loaded()
