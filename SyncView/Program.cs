@@ -22,6 +22,12 @@ static class Program
         Application.Run(LoginForm);
     }
 
+    public static void StartFully()
+    {
+        MainForm = new MainForm();
+        Application.Run(MainForm);
+    }
+
     [DllImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     static extern bool AllocConsole();

@@ -20,7 +20,10 @@ public class SvListener : PacketHandler<SvClient>
 
     public override void OnLoginResponse(SvClient conn, LoginResponse loginResponse)
     {
-        Program.LoginForm.HandleLoginResult(loginResponse);
+        Task.Run(() =>
+        {
+            Program.LoginForm.HandleLoginResult(loginResponse);
+        });
         if (!loginResponse.Success) return;
         conn.IsHost = loginResponse.Host;
         Log.Information("LoginResponse received: Success - {success}, Host - {host}", loginResponse.Success, loginResponse.Host);

@@ -101,7 +101,7 @@ partial class MainForm
         pauseButton.TabIndex = 15;
         pauseButton.Text = "";
         pauseButton.UseVisualStyleBackColor = true;
-        pauseButton.Click += playButton_Click;
+        pauseButton.Click += pauseButton_Click;
         // 
         // playButton
         // 

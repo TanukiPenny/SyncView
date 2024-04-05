@@ -20,9 +20,8 @@ namespace SyncView
         {
             if (loginResponse.Success)
             {
-                Program.MainForm = new MainForm();
-                Application.Run(Program.MainForm);
-                Close();
+                Hide();
+                Program.StartFully();
             }
             else
             {
