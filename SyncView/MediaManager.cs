@@ -21,6 +21,14 @@ public class MediaManager
         Player = new(_libVlc);
         Player.Playing += OnPlaying;
     }
+
+    public void NewMediaSelected(Uri uri)
+    {
+        Stop();
+        _stopSync = false;
+        _stopTimeUpdate = false;
+        CurrentMedia = uri;
+    }
     
     private void OnPlaying(object? sender, EventArgs e)
     {
@@ -96,6 +104,7 @@ public class MediaManager
     {
         _stopSync = true;
         _stopTimeUpdate = true;
+        CurrentMedia = null;
         Player.Stop();
     }
     

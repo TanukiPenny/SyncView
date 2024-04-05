@@ -41,7 +41,7 @@ public partial class MediaSelector : Form
     {
         if (mediaList.SelectedItem != null)
         {
-            Program.MediaManager.CurrentMedia = (Uri?)mediaList.SelectedItem; //TODO: Make this clear out all old media stuffs, basically a stop
+            Program.MediaManager.NewMediaSelected((Uri)mediaList.SelectedItem); //TODO: Make this clear out all old media stuffs, basically a stop
         }
         Close();
     }

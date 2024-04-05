@@ -74,7 +74,7 @@ public class SvListener : PacketHandler<SvClient>
 
     public override void OnStop(SvClient conn)
     {
-        
+        Program.MediaManager.Stop();
     }
 
     public override void OnSerializationException(MessagePackSerializationException exception, int packetId)

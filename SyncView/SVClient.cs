@@ -68,9 +68,9 @@ public class SvClient : TcpClient
 
         int packetId = BitConverter.ToInt32(bytes, 0);
 
-        byte[] finalBytes = new byte[bytes.Length - sizeof(int)];
+        byte[] finalBytes = new byte[bytes.Length - sizeof(Int32)];
 
-        Array.Copy(bytes, sizeof(int), finalBytes, 0, finalBytes.Length);
+        Array.Copy(bytes, sizeof(Int32), finalBytes, 0, finalBytes.Length);
 
         _listener.HandlePacket(this, finalBytes, packetId);
     }

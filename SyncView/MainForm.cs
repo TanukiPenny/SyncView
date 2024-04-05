@@ -116,6 +116,8 @@ public partial class MainForm : Form
     private void stopButton_Click(object sender, EventArgs e)
     {
         if (!Program.SvClient.IsHost) return;
+        Program.MediaManager.Stop();
+        Program.SvClient.Send(new Stop(), MessageType.Stop);
     }
 
     private void mediaSelectorButton_Click(object sender, EventArgs e)
