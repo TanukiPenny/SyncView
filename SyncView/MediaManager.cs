@@ -9,7 +9,7 @@ namespace SyncView;
 
 public class MediaManager
 {
-    public MediaPlayer? Player { get; }
+    public MediaPlayer Player { get; }
     private readonly LibVLC _libVlc = new();
     public Uri? CurrentMedia;
     private Thread? _syncLoopThread;
@@ -45,7 +45,7 @@ public class MediaManager
         Log.Information("Time Update started");
         while (!_stopSync)
         {
-            Program.MainForm.VideoDataUpdate(Player.Time ,Player.Length);
+            Program.MainForm?.VideoDataUpdate(Player.Time ,Player.Length);
         }
         _stopSync = false;
     }
@@ -63,11 +63,7 @@ public class MediaManager
             Thread.Sleep(500);
         }
         _stopSync = false;
-    }
-
-    public void HandleNewMedia(Uri uri)
-    {
-        CurrentMedia = uri;
+        Log.Information("Media time sync ended");
     }
     
     public void Play()
@@ -102,7 +98,6 @@ public class MediaManager
     
     public void SeekTo(long time)
     {
-        Console.WriteLine($"seek to {time}");
         Player.Time = time;
     }
     

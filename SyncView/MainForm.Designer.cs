@@ -43,6 +43,8 @@ partial class MainForm
         volumeBar = new TrackBar();
         volMinLabel = new Label();
         volMaxLabel = new Label();
+        connectedUsersList = new ListBox();
+        connectedUsersLabel = new Label();
         ((System.ComponentModel.ISupportInitialize)videoView).BeginInit();
         ((System.ComponentModel.ISupportInitialize)progressBar).BeginInit();
         ((System.ComponentModel.ISupportInitialize)volumeBar).BeginInit();
@@ -191,10 +193,30 @@ partial class MainForm
         volMaxLabel.TabIndex = 21;
         volMaxLabel.Text = "100%";
         // 
+        // connectedUsersList
+        // 
+        connectedUsersList.FormattingEnabled = true;
+        connectedUsersList.ItemHeight = 15;
+        connectedUsersList.Location = new Point(1207, 26);
+        connectedUsersList.Name = "connectedUsersList";
+        connectedUsersList.Size = new Size(373, 124);
+        connectedUsersList.TabIndex = 22;
+        // 
+        // connectedUsersLabel
+        // 
+        connectedUsersLabel.AutoSize = true;
+        connectedUsersLabel.Location = new Point(1207, 8);
+        connectedUsersLabel.Name = "connectedUsersLabel";
+        connectedUsersLabel.Size = new Size(96, 15);
+        connectedUsersLabel.TabIndex = 23;
+        connectedUsersLabel.Text = "Connected Users";
+        // 
         // MainForm
         // 
         AutoScaleMode = AutoScaleMode.None;
         ClientSize = new Size(1584, 861);
+        Controls.Add(connectedUsersLabel);
+        Controls.Add(connectedUsersList);
         Controls.Add(volMaxLabel);
         Controls.Add(volMinLabel);
         Controls.Add(volumeBar);
@@ -236,4 +258,6 @@ partial class MainForm
     private TrackBar volumeBar;
     private Label volMinLabel;
     private Label volMaxLabel;
+    private ListBox connectedUsersList;
+    private Label connectedUsersLabel;
 }
