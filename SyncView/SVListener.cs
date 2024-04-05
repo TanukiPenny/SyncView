@@ -21,6 +21,8 @@ public class SvListener : PacketHandler<SvClient>
     public override void OnLoginResponse(SvClient conn, LoginResponse loginResponse)
     {
         if (!loginResponse.Success) return;
+        Program.SyncViewForm.MainUi.FinishSetup();
+        Program.SyncViewForm.LoginUI.Hide();
         conn.IsHost = loginResponse.Host;
         Log.Information("LoginResponse received: Success - {success}, Host - {host}", loginResponse.Success, loginResponse.Host);
     }
@@ -41,14 +43,14 @@ public class SvListener : PacketHandler<SvClient>
 
     public override void OnNewMedia(SvClient conn, NewMedia newMedia)
     {
-        Program.MainForm.MediaManager.CurrentMedia = newMedia.Uri;
-        Program.MainForm.MediaManager.Play();
+        Program.SyncViewForm.MediaManager.CurrentMedia = newMedia.Uri;
+        Program.SyncViewForm.MediaManager.Play();
         Log.Information("NewMedia received: {newMediaUri}", newMedia.Uri);
     }
 
     public override void OnTimeSync(SvClient conn, TimeSync timeSync)
     {
-        Program.MainForm.MediaManager.HandleTimeSync(timeSync);
+        Program.SyncViewForm.MediaManager.HandleTimeSync(timeSync);
         Log.Verbose("TimeSync received: {timeSyncTime}", timeSync.Time);
     }
 

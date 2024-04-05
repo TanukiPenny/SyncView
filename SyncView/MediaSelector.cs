@@ -41,7 +41,7 @@ public partial class MediaSelector : Form
     {
         if (mediaList.SelectedItem != null)
         {
-            Program.MainForm.MediaManager.CurrentMedia = (Uri?)mediaList.SelectedItem;
+            Program.SyncViewForm.MediaManager.CurrentMedia = (Uri?)mediaList.SelectedItem;
         }
         Close();
     }

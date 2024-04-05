@@ -5,23 +5,18 @@ namespace SyncView;
 
 static class Program
 {
-    public static readonly MainForm MainForm = new();
+    public static readonly SyncViewForm SyncViewForm = new();
     
     [STAThread]
     static void Main()
     {
-        AllocConsole();
-        
         Log.Logger = new LoggerConfiguration().WriteTo.Console(outputTemplate:
             "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}").MinimumLevel.Debug().CreateLogger();
         
         ApplicationConfiguration.Initialize();
         
-        LoginForm frmLogin = new LoginForm();
-        if (frmLogin.ShowDialog() == DialogResult.OK )
-        {
-            Application.Run(MainForm);
-        }
+        Application.Run(SyncViewForm);
+        
     }
 
     [DllImport("kernel32.dll", SetLastError = true)]

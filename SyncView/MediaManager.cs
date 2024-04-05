@@ -9,7 +9,7 @@ namespace SyncView;
 
 public class MediaManager
 {
-    public MediaPlayer Player { get; }
+    public MediaPlayer? Player { get; }
     private readonly LibVLC _libVlc = new();
     public Uri? CurrentMedia;
     private Thread? _syncLoopThread;
@@ -26,7 +26,7 @@ public class MediaManager
     {
         _timeUpdateThread = new Thread(TimeUpdateLoop);
         _timeUpdateThread.Start();
-        if (!Program.MainForm.SvClient.IsHost) return;
+        if (!Program.SyncViewForm.SvClient.IsHost) return;
         _syncLoopThread = new Thread(SyncLoop);
         _syncLoopThread.Start();
     }
@@ -45,7 +45,7 @@ public class MediaManager
         Log.Information("Time Update started");
         while (!_stopSync)
         {
-            Program.MainForm.VideoDataUpdate(Player.Time ,Player.Length);
+            //Program.SyncViewForm.MainUi.VideoDataUpdate(Player.Time ,Player.Length);
         }
         _stopSync = false;
     }
@@ -59,7 +59,7 @@ public class MediaManager
             {
                 Time = Player.Time
             };
-            Program.MainForm.SvClient?.Send(timeSync, MessageType.TimeSync);
+            Program.SyncViewForm.SvClient?.Send(timeSync, MessageType.TimeSync);
             Thread.Sleep(500);
         }
         _stopSync = false;
@@ -78,14 +78,14 @@ public class MediaManager
         
         Player.Play(media);
 
-        if (!Program.MainForm.SvClient.IsHost) return;
+        if (!Program.SyncViewForm.SvClient.IsHost) return;
         
         var newMedia = new NewMedia
         {
             Uri = CurrentMedia
         };
         Log.Information("Sending new media");
-        Program.MainForm.SvClient.Send(newMedia, MessageType.NewMedia);
+        Program.SyncViewForm.SvClient.Send(newMedia, MessageType.NewMedia);
     }
     
     public void Pause()
