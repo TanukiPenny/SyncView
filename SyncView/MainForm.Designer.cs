@@ -40,8 +40,12 @@ partial class MainForm
         timeLeft = new Label();
         timePassed = new Label();
         progressBar = new TrackBar();
+        volumeBar = new TrackBar();
+        volMinLabel = new Label();
+        volMaxLabel = new Label();
         ((System.ComponentModel.ISupportInitialize)videoView).BeginInit();
         ((System.ComponentModel.ISupportInitialize)progressBar).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)volumeBar).BeginInit();
         SuspendLayout();
         // 
         // videoView
@@ -79,7 +83,7 @@ partial class MainForm
         skipForward30Button.UseVisualStyleBackColor = true;
         skipForward30Button.Click += skipForward30Button_Click;
         // 
-        // skipBackButton
+        // skipBack10Button
         // 
         skipBack10Button.Font = new Font("Segoe MDL2 Assets", 24F);
         skipBack10Button.Location = new Point(402, 740);
@@ -153,14 +157,47 @@ partial class MainForm
         progressBar.Size = new Size(763, 45);
         progressBar.TabIndex = 10;
         progressBar.ValueChanged += progressBar_ValueChanged;
+        progressBar.MouseCaptureChanged += progressBar_MouseCaptureChanged;
         progressBar.MouseDown += progressBar_MouseDown;
         progressBar.MouseUp += progressBar_MouseUp;
-        progressBar.MouseCaptureChanged += progressBar_MouseCaptureChanged;
+        // 
+        // volumeBar
+        // 
+        volumeBar.Location = new Point(30, 695);
+        volumeBar.Maximum = 100;
+        volumeBar.Name = "volumeBar";
+        volumeBar.Orientation = Orientation.Vertical;
+        volumeBar.RightToLeft = RightToLeft.No;
+        volumeBar.Size = new Size(45, 145);
+        volumeBar.TabIndex = 19;
+        volumeBar.Value = 100;
+        volumeBar.ValueChanged += volumeBar_ValueChanged;
+        // 
+        // volMinLabel
+        // 
+        volMinLabel.AutoSize = true;
+        volMinLabel.Location = new Point(66, 820);
+        volMinLabel.Name = "volMinLabel";
+        volMinLabel.Size = new Size(23, 15);
+        volMinLabel.TabIndex = 20;
+        volMinLabel.Text = "0%";
+        // 
+        // volMaxLabel
+        // 
+        volMaxLabel.AutoSize = true;
+        volMaxLabel.Location = new Point(66, 702);
+        volMaxLabel.Name = "volMaxLabel";
+        volMaxLabel.Size = new Size(35, 15);
+        volMaxLabel.TabIndex = 21;
+        volMaxLabel.Text = "100%";
         // 
         // MainForm
         // 
         AutoScaleMode = AutoScaleMode.None;
         ClientSize = new Size(1584, 861);
+        Controls.Add(volMaxLabel);
+        Controls.Add(volMinLabel);
+        Controls.Add(volumeBar);
         Controls.Add(stopButton);
         Controls.Add(skipForward30Button);
         Controls.Add(skipBack10Button);
@@ -179,6 +216,7 @@ partial class MainForm
         Text = "SyncView";
         ((System.ComponentModel.ISupportInitialize)videoView).EndInit();
         ((System.ComponentModel.ISupportInitialize)progressBar).EndInit();
+        ((System.ComponentModel.ISupportInitialize)volumeBar).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -195,4 +233,7 @@ partial class MainForm
     private Label timeLeft;
     private Label timePassed;
     private TrackBar progressBar;
+    private TrackBar volumeBar;
+    private Label volMinLabel;
+    private Label volMaxLabel;
 }

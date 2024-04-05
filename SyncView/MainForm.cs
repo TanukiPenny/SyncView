@@ -11,8 +11,8 @@ public partial class MainForm : Form
 
         VideoView_Loaded();
     }
-    
-    
+
+
     private void VideoView_Loaded()
     {
         Core.Initialize();
@@ -26,15 +26,15 @@ public partial class MainForm : Form
     {
         progressBar.Maximum = (int)length;
 
-        TimeSpan timePassedSpan = TimeSpan.FromMilliseconds(time);
-        string timePassedText = timePassedSpan.ToString(@"hh\:mm\:ss");
-        timePassed.Text = timePassedText;
-
         TimeSpan timeLeftSpan = TimeSpan.FromMilliseconds(length - time);
         string timeLeftText = timeLeftSpan.ToString(@"hh\:mm\:ss");
         timeLeft.Text = timeLeftText;
 
         if (_mouseDown) return;
+        
+        TimeSpan timePassedSpan = TimeSpan.FromMilliseconds(time);
+        string timePassedText = timePassedSpan.ToString(@"hh\:mm\:ss");
+        timePassed.Text = timePassedText;
 
         progressBar.Value = (int)time;
     }
@@ -42,8 +42,12 @@ public partial class MainForm : Form
     private void progressBar_ValueChanged(object sender, EventArgs e)
     {
         _tempTime = progressBar.Value;
+        if (!_mouseDown) return;
+        TimeSpan timePassedSpan = TimeSpan.FromMilliseconds(progressBar.Value);
+        string timePassedText = timePassedSpan.ToString(@"hh\:mm\:ss");
+        timePassed.Text = timePassedText;
     }
-
+    
     private void progressBar_MouseCaptureChanged(object sender, EventArgs e)
     {
         Program.MediaManager.SeekTo(_tempTime);
@@ -63,7 +67,7 @@ public partial class MainForm : Form
 
     private void SkipBack10ButtonClick(object sender, EventArgs e)
     {
-        
+
     }
 
     private void playButton_Click(object sender, EventArgs e)
@@ -87,5 +91,11 @@ public partial class MainForm : Form
     {
         MediaSelector mediaSelector = new MediaSelector();
         mediaSelector.ShowDialog();
+    }
+
+    private void volumeBar_ValueChanged(object sender, EventArgs e)
+    {
+        Program.MediaManager.SetVolume(volumeBar.Value);
+        volMaxLabel.Text = $"{volumeBar.Value}%";
     }
 }
