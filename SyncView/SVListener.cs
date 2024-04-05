@@ -67,7 +67,16 @@ public class SvListener : PacketHandler<SvClient>
         Program.ConnectedUsers.Remove(userLeave.Nick);
     }
 
-    
+    public override void OnPause(SvClient conn)
+    {
+        Program.MediaManager.Pause();
+    }
+
+    public override void OnStop(SvClient conn)
+    {
+        
+    }
+
     public override void OnSerializationException(MessagePackSerializationException exception, int packetId)
     {
         Log.Error(exception, "Exception in serialization");

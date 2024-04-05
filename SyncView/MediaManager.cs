@@ -15,6 +15,7 @@ public class MediaManager
     private Thread? _syncLoopThread;
     private Thread? _timeUpdateThread;
     private bool _stopSync;
+    private bool _stopTimeUpdate;
 
     public MediaManager()
     {
@@ -43,11 +44,12 @@ public class MediaManager
     private void TimeUpdateLoop()
     {
         Log.Information("Time Update started");
-        while (!_stopSync)
+        while (!_stopTimeUpdate)
         {
             Program.MainForm?.VideoDataUpdate(Player.Time ,Player.Length);
         }
-        _stopSync = false;
+        _stopTimeUpdate = false;
+        Log.Information("Time Update ended");
     }
     
     private void SyncLoop()
@@ -86,13 +88,15 @@ public class MediaManager
     
     public void Pause()
     {
-        _stopSync = true;
+        _stopSync = Player.IsPlaying;
+        _stopTimeUpdate = Player.IsPlaying;
         Player.Pause();
     }
     
     public void Stop()
     {
         _stopSync = true;
+        _stopTimeUpdate = true;
         Player.Stop();
     }
     

@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using LibVLCSharp.Shared;
+using SVCommon;
 using SVCommon.Packet;
 
 namespace SyncView;
@@ -64,6 +65,7 @@ public partial class MainForm : Form
     
     private void progressBar_MouseCaptureChanged(object sender, EventArgs e)
     {
+        if (!Program.SvClient.IsHost) return;
         Program.MediaManager.SeekTo(_tempTime);
     }
 
@@ -81,24 +83,32 @@ public partial class MainForm : Form
 
     private void SkipBack10ButtonClick(object sender, EventArgs e)
     {
-
+        if (!Program.SvClient.IsHost) return;
+        Program.MediaManager.SeekTo(Program.MediaManager.Player.Time - 10000);
     }
 
     private void playButton_Click(object sender, EventArgs e)
     {
+        if (!Program.SvClient.IsHost) return;
         Program.MediaManager.Play();
     }
 
     private void pauseButton_Click(object sender, EventArgs e)
     {
+        if (!Program.SvClient.IsHost) return;
+        Program.MediaManager.Pause();
+        Program.SvClient.Send(new Pause(), MessageType.Pause);
     }
 
     private void skipForward30Button_Click(object sender, EventArgs e)
     {
+        if (!Program.SvClient.IsHost) return;
+        Program.MediaManager.SeekTo(Program.MediaManager.Player.Time + 30000);
     }
 
     private void stopButton_Click(object sender, EventArgs e)
     {
+        if (!Program.SvClient.IsHost) return;
     }
 
     private void mediaSelectorButton_Click(object sender, EventArgs e)
