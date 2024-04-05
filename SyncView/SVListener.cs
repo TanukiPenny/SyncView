@@ -42,12 +42,12 @@ public class SvListener : PacketHandler<SvClient>
         }
         Log.Information("HostChange received: {nick}", hostChange.Nick);
     }
-
-    public override void OnNewMedia(SvClient conn, NewMedia newMedia)
+    
+    public override void OnPlay(SvClient conn, Play play)
     {
-        Program.MediaManager.CurrentMedia = newMedia.Uri;
+        Program.MediaManager.CurrentMedia = play.Uri;
         Program.MediaManager.Play();
-        Log.Information("NewMedia received: {newMediaUri}", newMedia.Uri);
+        Log.Information("NewMedia received: {playUri}", play.Uri);
     }
 
     public override void OnTimeSync(SvClient conn, TimeSync timeSync)

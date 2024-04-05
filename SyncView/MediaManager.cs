@@ -76,12 +76,12 @@ public class MediaManager
 
         if (!Program.SvClient.IsHost) return;
         
-        var newMedia = new NewMedia
+        var play = new Play
         {
             Uri = CurrentMedia
         };
         Log.Information("Sending new media");
-        Program.SvClient.Send(newMedia, MessageType.NewMedia);
+        Program.SvClient.Send(play, MessageType.Play);
     }
     
     public void Pause()
