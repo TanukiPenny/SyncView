@@ -90,11 +90,18 @@ public partial class MainForm : Form
     private void playButton_Click(object sender, EventArgs e)
     {
         if (!Program.SvClient.IsHost) return;
+        if (Program.MediaManager.Player.IsPlaying) return;
+        if (Program.MediaManager.Player.Time > 0)
+        {
+            Program.MediaManager.Pause();
+            return;
+        }
         Program.MediaManager.Play();
     }
 
     private void pauseButton_Click(object sender, EventArgs e)
     {
+        if (!Program.MediaManager.Player.IsPlaying) return;
         if (!Program.SvClient.IsHost) return;
         Program.MediaManager.Pause();
         Program.SvClient.Send(new Pause(), MessageType.Pause);

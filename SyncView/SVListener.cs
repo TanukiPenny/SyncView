@@ -47,7 +47,7 @@ public class SvListener : PacketHandler<SvClient>
     {
         Program.MediaManager.CurrentMedia = play.Uri;
         Program.MediaManager.Play();
-        Log.Information("NewMedia received: {playUri}", play.Uri);
+        Log.Information("Play received: {playUri}", play.Uri);
     }
 
     public override void OnTimeSync(SvClient conn, TimeSync timeSync)
