@@ -5,83 +5,87 @@ namespace SyncView;
 
 public partial class MainForm : Form
 {
-    public readonly SvClient SvClient = new();
-    public readonly MediaManager MediaManager = new();
-
     public MainForm()
     {
         InitializeComponent();
 
         VideoView_Loaded();
     }
-
+    
+    
     private void VideoView_Loaded()
     {
         Core.Initialize();
 
-        videoView.MediaPlayer = MediaManager?.Player;
-    }
-
-    private void testPlay_Click(object sender, EventArgs e)
-    {
-        MediaManager.Play();
-    }
-
-    private void testLogin_Click(object sender, EventArgs e)
-    {
-        SvClient.Connect();
-        SvClient.Login(testNickBox.Text);
-    }
-
-    private void testOpenMediaSelector_Click(object sender, EventArgs e)
-    {
-        MediaSelector mediaSelector = new MediaSelector();
-        mediaSelector.ShowDialog();
+        videoView.MediaPlayer = Program.MediaManager.Player;
     }
 
     private int _tempTime;
 
-    public void VideoLengthUpdate(int length)
-    {
-        ProgressBar.Maximum = length;
-    }
-    
     public void VideoDataUpdate(long time, long length)
     {
-        ProgressBar.Maximum = (int)length;
-        
+        progressBar.Maximum = (int)length;
+
         TimeSpan timePassedSpan = TimeSpan.FromMilliseconds(time);
         string timePassedText = timePassedSpan.ToString(@"hh\:mm\:ss");
         timePassed.Text = timePassedText;
-        
+
         TimeSpan timeLeftSpan = TimeSpan.FromMilliseconds(length - time);
         string timeLeftText = timeLeftSpan.ToString(@"hh\:mm\:ss");
         timeLeft.Text = timeLeftText;
-        
+
         if (_mouseDown) return;
-        
-        ProgressBar.Value = (int)time;
+
+        progressBar.Value = (int)time;
     }
 
     private void progressBar_ValueChanged(object sender, EventArgs e)
     {
-        _tempTime = ProgressBar.Value;
+        _tempTime = progressBar.Value;
     }
 
     private void progressBar_MouseCaptureChanged(object sender, EventArgs e)
     {
-        MediaManager.SeekTo(_tempTime);
+        Program.MediaManager.SeekTo(_tempTime);
     }
 
-    private new bool _mouseDown = false;
-    
+    private bool _mouseDown;
+
     private void progressBar_MouseDown(object sender, EventArgs e)
     {
         _mouseDown = true;
     }
-    
+
     private void progressBar_MouseUp(object sender, EventArgs e)
     {
         _mouseDown = false;
+    }
+
+    private void SkipBack10ButtonClick(object sender, EventArgs e)
+    {
+        
+    }
+
+    private void playButton_Click(object sender, EventArgs e)
+    {
+        Program.MediaManager.Play();
+    }
+
+    private void pauseButton_Click(object sender, EventArgs e)
+    {
+    }
+
+    private void skipForward30Button_Click(object sender, EventArgs e)
+    {
+    }
+
+    private void stopButton_Click(object sender, EventArgs e)
+    {
+    }
+
+    private void mediaSelectorButton_Click(object sender, EventArgs e)
+    {
+        MediaSelector mediaSelector = new MediaSelector();
+        mediaSelector.ShowDialog();
     }
 }

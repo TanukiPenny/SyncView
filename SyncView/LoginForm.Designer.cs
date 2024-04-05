@@ -30,10 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             SyncViewLogo = new PictureBox();
-            UsernameField = new TextBox();
-            PasswordField = new TextBox();
+            nicknameBox = new TextBox();
             UsernameLabel = new Label();
-            PasswordLabel = new Label();
             LoginButton = new Button();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)SyncViewLogo).BeginInit();
@@ -43,63 +41,46 @@
             // SyncViewLogo
             // 
             SyncViewLogo.Image = (Image)resources.GetObject("SyncViewLogo.Image");
-            SyncViewLogo.Location = new Point(319, 7);
+            SyncViewLogo.Location = new Point(223, 4);
+            SyncViewLogo.Margin = new Padding(2);
             SyncViewLogo.Name = "SyncViewLogo";
-            SyncViewLogo.Size = new Size(541, 132);
+            SyncViewLogo.Size = new Size(379, 79);
             SyncViewLogo.SizeMode = PictureBoxSizeMode.StretchImage;
             SyncViewLogo.TabIndex = 0;
             SyncViewLogo.TabStop = false;
             // 
-            // UsernameField
+            // nicknameBox
             // 
-            UsernameField.BackColor = Color.GhostWhite;
-            UsernameField.Font = new Font("Orbitron", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            UsernameField.ForeColor = Color.Black;
-            UsernameField.Location = new Point(284, 402);
-            UsernameField.Name = "UsernameField";
-            UsernameField.Size = new Size(610, 30);
-            UsernameField.TabIndex = 1;
-            // 
-            // PasswordField
-            // 
-            PasswordField.BackColor = Color.GhostWhite;
-            PasswordField.Font = new Font("Orbitron", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PasswordField.ForeColor = Color.Black;
-            PasswordField.Location = new Point(284, 509);
-            PasswordField.Name = "PasswordField";
-            PasswordField.Size = new Size(610, 30);
-            PasswordField.TabIndex = 1;
+            nicknameBox.BackColor = Color.GhostWhite;
+            nicknameBox.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            nicknameBox.ForeColor = Color.Black;
+            nicknameBox.Location = new Point(199, 278);
+            nicknameBox.Margin = new Padding(2);
+            nicknameBox.Name = "nicknameBox";
+            nicknameBox.Size = new Size(428, 21);
+            nicknameBox.TabIndex = 1;
             // 
             // UsernameLabel
             // 
             UsernameLabel.AutoSize = true;
-            UsernameLabel.Font = new Font("Orbitron", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            UsernameLabel.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             UsernameLabel.ForeColor = Color.GhostWhite;
-            UsernameLabel.Location = new Point(284, 364);
+            UsernameLabel.Location = new Point(199, 255);
+            UsernameLabel.Margin = new Padding(2, 0, 2, 0);
             UsernameLabel.Name = "UsernameLabel";
-            UsernameLabel.Size = new Size(116, 22);
+            UsernameLabel.Size = new Size(75, 15);
             UsernameLabel.TabIndex = 2;
-            UsernameLabel.Text = "Username:";
-            // 
-            // PasswordLabel
-            // 
-            PasswordLabel.AutoSize = true;
-            PasswordLabel.Font = new Font("Orbitron", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PasswordLabel.ForeColor = Color.GhostWhite;
-            PasswordLabel.Location = new Point(284, 470);
-            PasswordLabel.Name = "PasswordLabel";
-            PasswordLabel.Size = new Size(115, 22);
-            PasswordLabel.TabIndex = 3;
-            PasswordLabel.Text = "Password:";
+            UsernameLabel.Text = "Nickname:";
             // 
             // LoginButton
             // 
             LoginButton.BackColor = Color.SlateBlue;
-            LoginButton.Font = new Font("Orbitron", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LoginButton.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LoginButton.ForeColor = Color.White;
-            LoginButton.Location = new Point(472, 583);
+            LoginButton.Location = new Point(330, 350);
+            LoginButton.Margin = new Padding(2);
             LoginButton.Name = "LoginButton";
-            LoginButton.Size = new Size(234, 55);
+            LoginButton.Size = new Size(164, 33);
             LoginButton.TabIndex = 4;
             LoginButton.Text = "Login";
             LoginButton.UseVisualStyleBackColor = false;
@@ -108,27 +89,27 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(424, 126);
+            pictureBox1.Location = new Point(297, 76);
+            pictureBox1.Margin = new Padding(2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(330, 228);
+            pictureBox1.Size = new Size(231, 137);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
-            ClientSize = new Size(1178, 684);
+            ClientSize = new Size(825, 410);
             Controls.Add(pictureBox1);
             Controls.Add(LoginButton);
-            Controls.Add(PasswordLabel);
             Controls.Add(UsernameLabel);
-            Controls.Add(PasswordField);
-            Controls.Add(UsernameField);
+            Controls.Add(nicknameBox);
             Controls.Add(SyncViewLogo);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2);
             Name = "LoginForm";
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)SyncViewLogo).EndInit();
@@ -140,10 +121,8 @@
         #endregion
 
         private PictureBox SyncViewLogo;
-        private TextBox UsernameField;
-        private TextBox PasswordField;
+        private TextBox nicknameBox;
         private Label UsernameLabel;
-        private Label PasswordLabel;
         private Button LoginButton;
         private PictureBox pictureBox1;
     }

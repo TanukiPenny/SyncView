@@ -1,4 +1,4 @@
-namespace SyncView;
+﻿namespace SyncView;
 
 partial class MainForm
 {
@@ -31,110 +31,145 @@ partial class MainForm
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
         videoView = new LibVLCSharp.WinForms.VideoView();
-        testPlay = new Button();
-        testNickBox = new TextBox();
-        testLogin = new Button();
-        testOpenMediaSelector = new Button();
-        ProgressBar = new TrackBar();
-        timePassed = new Label();
+        stopButton = new Button();
+        skipForward30Button = new Button();
+        skipBack10Button = new Button();
+        pauseButton = new Button();
+        playButton = new Button();
+        mediaSelectorButton = new Button();
         timeLeft = new Label();
+        timePassed = new Label();
+        progressBar = new TrackBar();
         ((System.ComponentModel.ISupportInitialize)videoView).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)ProgressBar).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)progressBar).BeginInit();
         SuspendLayout();
         // 
         // videoView
         // 
         videoView.BackColor = Color.Black;
-        videoView.Location = new Point(8, 7);
-        videoView.Margin = new Padding(2);
+        videoView.Location = new Point(4, 4);
+        videoView.Margin = new Padding(0);
         videoView.MediaPlayer = null;
         videoView.Name = "videoView";
         videoView.Size = new Size(1200, 675);
         videoView.TabIndex = 0;
-        videoView.Text = "videoView1";
+        videoView.Text = "videoView";
         // 
-        // testPlay
+        // stopButton
         // 
-        testPlay.Location = new Point(33, 687);
-        testPlay.Name = "testPlay";
-        testPlay.Size = new Size(192, 43);
-        testPlay.TabIndex = 1;
-        testPlay.Text = "Test Play";
-        testPlay.UseVisualStyleBackColor = true;
-        testPlay.Click += testPlay_Click;
+        stopButton.Font = new Font("Segoe MDL2 Assets", 24F);
+        stopButton.Location = new Point(480, 790);
+        stopButton.Margin = new Padding(0);
+        stopButton.Name = "stopButton";
+        stopButton.Size = new Size(50, 50);
+        stopButton.TabIndex = 18;
+        stopButton.Text = "";
+        stopButton.UseVisualStyleBackColor = true;
+        stopButton.Click += stopButton_Click;
         // 
-        // testNickBox
+        // skipForward30Button
         // 
-        testNickBox.Location = new Point(873, 693);
-        testNickBox.Name = "testNickBox";
-        testNickBox.Size = new Size(394, 23);
-        testNickBox.TabIndex = 2;
-        testNickBox.Text = "Tester 1";
+        skipForward30Button.Font = new Font("Segoe MDL2 Assets", 24F);
+        skipForward30Button.Location = new Point(552, 740);
+        skipForward30Button.Margin = new Padding(0);
+        skipForward30Button.Name = "skipForward30Button";
+        skipForward30Button.Size = new Size(50, 50);
+        skipForward30Button.TabIndex = 17;
+        skipForward30Button.Text = "";
+        skipForward30Button.UseVisualStyleBackColor = true;
+        skipForward30Button.Click += skipForward30Button_Click;
         // 
-        // testLogin
+        // skipBackButton
         // 
-        testLogin.Location = new Point(971, 754);
-        testLogin.Name = "testLogin";
-        testLogin.Size = new Size(187, 40);
-        testLogin.TabIndex = 3;
-        testLogin.Text = "Test Login";
-        testLogin.UseVisualStyleBackColor = true;
-        testLogin.Click += testLogin_Click;
+        skipBack10Button.Font = new Font("Segoe MDL2 Assets", 24F);
+        skipBack10Button.Location = new Point(402, 740);
+        skipBack10Button.Margin = new Padding(0);
+        skipBack10Button.Name = "skipBack10Button";
+        skipBack10Button.Size = new Size(50, 50);
+        skipBack10Button.TabIndex = 16;
+        skipBack10Button.Text = "";
+        skipBack10Button.UseVisualStyleBackColor = true;
+        skipBack10Button.Click += SkipBack10ButtonClick;
         // 
-        // testOpenMediaSelector
+        // pauseButton
         // 
-        testOpenMediaSelector.Location = new Point(363, 757);
-        testOpenMediaSelector.Name = "testOpenMediaSelector";
-        testOpenMediaSelector.Size = new Size(205, 43);
-        testOpenMediaSelector.TabIndex = 4;
-        testOpenMediaSelector.Text = "Test Media Selector";
-        testOpenMediaSelector.UseVisualStyleBackColor = true;
-        testOpenMediaSelector.Click += testOpenMediaSelector_Click;
+        pauseButton.Font = new Font("Segoe MDL2 Assets", 24F);
+        pauseButton.Location = new Point(502, 740);
+        pauseButton.Margin = new Padding(0);
+        pauseButton.Name = "pauseButton";
+        pauseButton.Size = new Size(50, 50);
+        pauseButton.TabIndex = 15;
+        pauseButton.Text = "";
+        pauseButton.UseVisualStyleBackColor = true;
+        pauseButton.Click += playButton_Click;
         // 
-        // ProgressBar
+        // playButton
         // 
-        ProgressBar.LargeChange = 10;
-        ProgressBar.Location = new Point(293, 688);
-        ProgressBar.Maximum = 1000000;
-        ProgressBar.Name = "ProgressBar";
-        ProgressBar.Size = new Size(527, 45);
-        ProgressBar.TabIndex = 5;
-        ProgressBar.TickStyle = TickStyle.Both;
-        ProgressBar.Value = 500000;
-        ProgressBar.ValueChanged += progressBar_ValueChanged;
-        ProgressBar.MouseCaptureChanged += progressBar_MouseCaptureChanged;
-        ProgressBar.MouseDown += progressBar_MouseDown;
-        ProgressBar.MouseUp += progressBar_MouseUp;
+        playButton.Font = new Font("Segoe MDL2 Assets", 24F);
+        playButton.Location = new Point(452, 740);
+        playButton.Margin = new Padding(0);
+        playButton.Name = "playButton";
+        playButton.Size = new Size(50, 50);
+        playButton.TabIndex = 14;
+        playButton.Text = "";
+        playButton.UseVisualStyleBackColor = true;
+        playButton.Click += playButton_Click;
         // 
-        // timePassed
+        // mediaSelectorButton
         // 
-        timePassed.AutoSize = true;
-        timePassed.Location = new Point(303, 727);
-        timePassed.Name = "timePassed";
-        timePassed.Size = new Size(38, 15);
-        timePassed.TabIndex = 6;
-        timePassed.Text = "label1";
+        mediaSelectorButton.Location = new Point(921, 702);
+        mediaSelectorButton.Name = "mediaSelectorButton";
+        mediaSelectorButton.Size = new Size(154, 38);
+        mediaSelectorButton.TabIndex = 13;
+        mediaSelectorButton.Text = "Select New Media";
+        mediaSelectorButton.UseVisualStyleBackColor = true;
+        mediaSelectorButton.Click += mediaSelectorButton_Click;
         // 
         // timeLeft
         // 
         timeLeft.AutoSize = true;
-        timeLeft.Location = new Point(762, 727);
+        timeLeft.Location = new Point(823, 731);
         timeLeft.Name = "timeLeft";
-        timeLeft.Size = new Size(38, 15);
-        timeLeft.TabIndex = 7;
-        timeLeft.Text = "label2";
+        timeLeft.Size = new Size(49, 15);
+        timeLeft.TabIndex = 12;
+        timeLeft.Text = "00:00:00";
+        // 
+        // timePassed
+        // 
+        timePassed.AutoSize = true;
+        timePassed.Location = new Point(143, 731);
+        timePassed.Name = "timePassed";
+        timePassed.Size = new Size(49, 15);
+        timePassed.TabIndex = 11;
+        timePassed.Text = "00:00:00";
+        // 
+        // progressBar
+        // 
+        progressBar.LargeChange = 10000;
+        progressBar.Location = new Point(126, 695);
+        progressBar.Margin = new Padding(0);
+        progressBar.Maximum = 10000000;
+        progressBar.Name = "progressBar";
+        progressBar.Size = new Size(763, 45);
+        progressBar.TabIndex = 10;
+        progressBar.ValueChanged += progressBar_ValueChanged;
+        progressBar.MouseDown += progressBar_MouseDown;
+        progressBar.MouseUp += progressBar_MouseUp;
+        progressBar.MouseCaptureChanged += progressBar_MouseCaptureChanged;
         // 
         // MainForm
         // 
         AutoScaleMode = AutoScaleMode.None;
         ClientSize = new Size(1584, 861);
+        Controls.Add(stopButton);
+        Controls.Add(skipForward30Button);
+        Controls.Add(skipBack10Button);
+        Controls.Add(pauseButton);
+        Controls.Add(playButton);
+        Controls.Add(mediaSelectorButton);
         Controls.Add(timeLeft);
         Controls.Add(timePassed);
-        Controls.Add(ProgressBar);
-        Controls.Add(testOpenMediaSelector);
-        Controls.Add(testLogin);
-        Controls.Add(testNickBox);
-        Controls.Add(testPlay);
+        Controls.Add(progressBar);
         Controls.Add(videoView);
         Icon = (Icon)resources.GetObject("$this.Icon");
         Margin = new Padding(2);
@@ -143,7 +178,7 @@ partial class MainForm
         Name = "MainForm";
         Text = "SyncView";
         ((System.ComponentModel.ISupportInitialize)videoView).EndInit();
-        ((System.ComponentModel.ISupportInitialize)ProgressBar).EndInit();
+        ((System.ComponentModel.ISupportInitialize)progressBar).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -151,11 +186,13 @@ partial class MainForm
     #endregion
 
     private LibVLCSharp.WinForms.VideoView videoView;
-    private Button testPlay;
-    private TextBox testNickBox;
-    private Button testLogin;
-    private Button testOpenMediaSelector;
-    public TrackBar ProgressBar;
-    private Label timePassed;
+    private Button stopButton;
+    private Button skipForward30Button;
+    private Button skipBack10Button;
+    private Button pauseButton;
+    private Button playButton;
+    private Button mediaSelectorButton;
     private Label timeLeft;
+    private Label timePassed;
+    private TrackBar progressBar;
 }

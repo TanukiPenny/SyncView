@@ -26,7 +26,7 @@ public class MediaManager
     {
         _timeUpdateThread = new Thread(TimeUpdateLoop);
         _timeUpdateThread.Start();
-        if (!Program.SyncViewForm.SvClient.IsHost) return;
+        if (!Program.SvClient.IsHost) return;
         _syncLoopThread = new Thread(SyncLoop);
         _syncLoopThread.Start();
     }
@@ -45,7 +45,7 @@ public class MediaManager
         Log.Information("Time Update started");
         while (!_stopSync)
         {
-            //Program.SyncViewForm.MainUi.VideoDataUpdate(Player.Time ,Player.Length);
+            Program.MainForm.VideoDataUpdate(Player.Time ,Player.Length);
         }
         _stopSync = false;
     }
@@ -59,7 +59,7 @@ public class MediaManager
             {
                 Time = Player.Time
             };
-            Program.SyncViewForm.SvClient?.Send(timeSync, MessageType.TimeSync);
+            Program.SvClient?.Send(timeSync, MessageType.TimeSync);
             Thread.Sleep(500);
         }
         _stopSync = false;
@@ -78,14 +78,14 @@ public class MediaManager
         
         Player.Play(media);
 
-        if (!Program.SyncViewForm.SvClient.IsHost) return;
+        if (!Program.SvClient.IsHost) return;
         
         var newMedia = new NewMedia
         {
             Uri = CurrentMedia
         };
         Log.Information("Sending new media");
-        Program.SyncViewForm.SvClient.Send(newMedia, MessageType.NewMedia);
+        Program.SvClient.Send(newMedia, MessageType.NewMedia);
     }
     
     public void Pause()

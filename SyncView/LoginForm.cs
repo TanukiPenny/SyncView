@@ -1,4 +1,7 @@
-﻿namespace SyncView
+﻿using System.Net.Mime;
+using SVCommon.Packet;
+
+namespace SyncView
 {
     public partial class LoginForm : Form
     {
@@ -7,38 +10,25 @@
             InitializeComponent();
         }
 
-        public string UsernameText // Prompt for username
-        {
-            get
-            {
-                return UsernameField.Text;
-            }
-            set
-            {
-                UsernameField.Text = value;
-            }
-        }
-
-        public string PasswordText // Prompt for password
-        {
-            get
-            {
-                return PasswordField.Text;
-            }
-            set
-            {
-                PasswordField.Text = value;
-            }
-        }
-
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            //TODO: Make it check to make sure it connects properly with nick before closing
-            if (true)
+            Program.SvClient.Connect();
+            Program.SvClient.Login(nicknameBox.Text);
+        }
+
+        public void HandleLoginResult(LoginResponse loginResponse)
+        {
+            if (loginResponse.Success)
             {
-                DialogResult = DialogResult.OK; // Sends user to main program if ok
-                Hide();
+                Program.MainForm = new MainForm();
+                Application.Run(Program.MainForm);
+                Close();
             }
+            else
+            {
+                MessageBox.Show("Login Failed!");
+            }
+            
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using System.Runtime.InteropServices;
 using Serilog;
 
@@ -5,7 +6,10 @@ namespace SyncView;
 
 static class Program
 {
-    public static readonly SyncViewForm SyncViewForm = new();
+    public static readonly LoginForm LoginForm = new();
+    public static MainForm? MainForm;
+    public static readonly SvClient SvClient = new();
+    public static readonly MediaManager MediaManager = new();
     
     [STAThread]
     static void Main()
@@ -15,8 +19,7 @@ static class Program
         
         ApplicationConfiguration.Initialize();
         
-        Application.Run(SyncViewForm);
-        
+        Application.Run(LoginForm);
     }
 
     [DllImport("kernel32.dll", SetLastError = true)]
