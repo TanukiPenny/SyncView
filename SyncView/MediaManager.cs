@@ -32,6 +32,7 @@ public class MediaManager
     
     private void OnPlaying(object? sender, EventArgs e)
     {
+        Program.MainForm.CurrentMediaLabel.Text = $"Current Media: {CurrentMedia.ToString()}";
         _timeUpdateThread = new Thread(TimeUpdateLoop);
         _timeUpdateThread.Start();
         if (!Program.SvClient.IsHost) return;
@@ -102,6 +103,7 @@ public class MediaManager
     
     public void Stop()
     {
+        Program.MainForm.CurrentMediaLabel.Text = "Current Media: None";
         _stopSync = true;
         _stopTimeUpdate = true;
         CurrentMedia = null;

@@ -216,22 +216,21 @@ partial class MainForm
         // currentMediaLabel
         // 
         currentMediaLabel.AutoSize = true;
-        currentMediaLabel.Location = new Point(447, 686);
+        currentMediaLabel.Location = new Point(143, 688);
         currentMediaLabel.Name = "currentMediaLabel";
-        currentMediaLabel.Size = new Size(106, 15);
+        currentMediaLabel.Size = new Size(118, 15);
         currentMediaLabel.TabIndex = 24;
-        currentMediaLabel.Text = "currentMediaLabel";
+        currentMediaLabel.Text = "Current Media: None";
         currentMediaLabel.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // currentHostLabel
         // 
         currentHostLabel.AutoSize = true;
-        currentHostLabel.Location = new Point(997, 686);
+        currentHostLabel.Location = new Point(915, 688);
         currentHostLabel.Name = "currentHostLabel";
         currentHostLabel.Size = new Size(98, 15);
         currentHostLabel.TabIndex = 25;
         currentHostLabel.Text = "currentHostLabel";
-        currentHostLabel.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // MainForm
         // 
