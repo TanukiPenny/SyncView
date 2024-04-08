@@ -45,6 +45,8 @@ partial class MainForm
         volMaxLabel = new Label();
         connectedUsersList = new ListBox();
         connectedUsersLabel = new Label();
+        currentMediaLabel = new Label();
+        currentHostLabel = new Label();
         ((System.ComponentModel.ISupportInitialize)videoView).BeginInit();
         ((System.ComponentModel.ISupportInitialize)progressBar).BeginInit();
         ((System.ComponentModel.ISupportInitialize)volumeBar).BeginInit();
@@ -64,7 +66,7 @@ partial class MainForm
         // stopButton
         // 
         stopButton.Font = new Font("Segoe MDL2 Assets", 24F);
-        stopButton.Location = new Point(480, 790);
+        stopButton.Location = new Point(480, 803);
         stopButton.Margin = new Padding(0);
         stopButton.Name = "stopButton";
         stopButton.Size = new Size(50, 50);
@@ -76,7 +78,7 @@ partial class MainForm
         // skipForward30Button
         // 
         skipForward30Button.Font = new Font("Segoe MDL2 Assets", 24F);
-        skipForward30Button.Location = new Point(552, 740);
+        skipForward30Button.Location = new Point(552, 753);
         skipForward30Button.Margin = new Padding(0);
         skipForward30Button.Name = "skipForward30Button";
         skipForward30Button.Size = new Size(50, 50);
@@ -88,7 +90,7 @@ partial class MainForm
         // skipBack10Button
         // 
         skipBack10Button.Font = new Font("Segoe MDL2 Assets", 24F);
-        skipBack10Button.Location = new Point(402, 740);
+        skipBack10Button.Location = new Point(402, 753);
         skipBack10Button.Margin = new Padding(0);
         skipBack10Button.Name = "skipBack10Button";
         skipBack10Button.Size = new Size(50, 50);
@@ -100,7 +102,7 @@ partial class MainForm
         // pauseButton
         // 
         pauseButton.Font = new Font("Segoe MDL2 Assets", 24F);
-        pauseButton.Location = new Point(502, 740);
+        pauseButton.Location = new Point(502, 753);
         pauseButton.Margin = new Padding(0);
         pauseButton.Name = "pauseButton";
         pauseButton.Size = new Size(50, 50);
@@ -112,7 +114,7 @@ partial class MainForm
         // playButton
         // 
         playButton.Font = new Font("Segoe MDL2 Assets", 24F);
-        playButton.Location = new Point(452, 740);
+        playButton.Location = new Point(452, 753);
         playButton.Margin = new Padding(0);
         playButton.Name = "playButton";
         playButton.Size = new Size(50, 50);
@@ -123,9 +125,9 @@ partial class MainForm
         // 
         // mediaSelectorButton
         // 
-        mediaSelectorButton.Location = new Point(921, 702);
+        mediaSelectorButton.Location = new Point(915, 712);
         mediaSelectorButton.Name = "mediaSelectorButton";
-        mediaSelectorButton.Size = new Size(154, 38);
+        mediaSelectorButton.Size = new Size(264, 38);
         mediaSelectorButton.TabIndex = 13;
         mediaSelectorButton.Text = "Select New Media";
         mediaSelectorButton.UseVisualStyleBackColor = true;
@@ -134,7 +136,7 @@ partial class MainForm
         // timeLeft
         // 
         timeLeft.AutoSize = true;
-        timeLeft.Location = new Point(823, 731);
+        timeLeft.Location = new Point(823, 742);
         timeLeft.Name = "timeLeft";
         timeLeft.Size = new Size(49, 15);
         timeLeft.TabIndex = 12;
@@ -143,7 +145,7 @@ partial class MainForm
         // timePassed
         // 
         timePassed.AutoSize = true;
-        timePassed.Location = new Point(143, 731);
+        timePassed.Location = new Point(143, 742);
         timePassed.Name = "timePassed";
         timePassed.Size = new Size(49, 15);
         timePassed.TabIndex = 11;
@@ -152,7 +154,7 @@ partial class MainForm
         // progressBar
         // 
         progressBar.LargeChange = 10000;
-        progressBar.Location = new Point(126, 695);
+        progressBar.Location = new Point(126, 708);
         progressBar.Margin = new Padding(0);
         progressBar.Maximum = 10000000;
         progressBar.Name = "progressBar";
@@ -211,10 +213,32 @@ partial class MainForm
         connectedUsersLabel.TabIndex = 23;
         connectedUsersLabel.Text = "Connected Users";
         // 
+        // currentMediaLabel
+        // 
+        currentMediaLabel.AutoSize = true;
+        currentMediaLabel.Location = new Point(447, 686);
+        currentMediaLabel.Name = "currentMediaLabel";
+        currentMediaLabel.Size = new Size(106, 15);
+        currentMediaLabel.TabIndex = 24;
+        currentMediaLabel.Text = "currentMediaLabel";
+        currentMediaLabel.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // currentHostLabel
+        // 
+        currentHostLabel.AutoSize = true;
+        currentHostLabel.Location = new Point(997, 686);
+        currentHostLabel.Name = "currentHostLabel";
+        currentHostLabel.Size = new Size(98, 15);
+        currentHostLabel.TabIndex = 25;
+        currentHostLabel.Text = "currentHostLabel";
+        currentHostLabel.TextAlign = ContentAlignment.MiddleCenter;
+        // 
         // MainForm
         // 
         AutoScaleMode = AutoScaleMode.None;
         ClientSize = new Size(1584, 861);
+        Controls.Add(currentHostLabel);
+        Controls.Add(currentMediaLabel);
         Controls.Add(connectedUsersLabel);
         Controls.Add(connectedUsersList);
         Controls.Add(volMaxLabel);
@@ -260,4 +284,6 @@ partial class MainForm
     private Label volMaxLabel;
     private ListBox connectedUsersList;
     private Label connectedUsersLabel;
+    private Label currentMediaLabel;
+    private Label currentHostLabel;
 }

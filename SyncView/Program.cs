@@ -12,6 +12,8 @@ static class Program
     public static readonly SvClient SvClient = new();
     public static readonly MediaManager MediaManager = new();
     public static readonly BindingList<string> ConnectedUsers = new();
+
+    public static string? HostStringBuffer;
     
     [STAThread]
     static void Main()
@@ -30,6 +32,10 @@ static class Program
     {
         MainForm = new MainForm();
         Application.Run(MainForm);
+        if (HostStringBuffer == null)
+        {
+            MainForm.CurrentHostLabel.Text = HostStringBuffer;
+        }
     }
 
     [DllImport("kernel32.dll", SetLastError = true)]

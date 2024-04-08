@@ -7,6 +7,9 @@ namespace SyncView;
 
 public partial class MainForm : Form
 {
+    public Label CurrentHostLabel => currentHostLabel;
+    public Label CurrentMediaLabel => currentMediaLabel;
+    
     public MainForm()
     {
         InitializeComponent();

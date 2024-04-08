@@ -40,6 +40,16 @@ public class SvListener : PacketHandler<SvClient>
         {
             conn.IsHost = true;
         }
+
+        if (Program.MainForm != null)
+        {
+            Program.MainForm.CurrentHostLabel.Text = $"Current Host: {hostChange.Nick}";
+        }
+        else
+        {
+            Program.HostStringBuffer = $"Current Host: {hostChange.Nick}";
+        }
+
         Log.Information("HostChange received: {nick}", hostChange.Nick);
     }
     
