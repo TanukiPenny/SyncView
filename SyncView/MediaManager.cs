@@ -1,3 +1,4 @@
+using System.Numerics;
 using HtmlAgilityPack;
 using LibVLCSharp.Shared;
 using Serilog;
@@ -32,7 +33,10 @@ public class MediaManager
     
     private void OnPlaying(object? sender, EventArgs e)
     {
-        Program.MainForm.CurrentMediaLabel.Text = $"Current Media: {CurrentMedia.ToString()}";
+        Program.MainForm.Invoke(() =>
+        {
+            Program.MainForm.CurrentMediaLabel.Text = $"Current Media: {CurrentMedia.ToString()}";
+        });
         _timeUpdateThread = new Thread(TimeUpdateLoop);
         _timeUpdateThread.Start();
         if (!Program.SvClient.IsHost) return;
@@ -54,7 +58,22 @@ public class MediaManager
         Log.Information("Time Update started");
         while (!_stopTimeUpdate)
         {
-            Program.MainForm?.VideoDataUpdate(Player.Time ,Player.Length);
+            if (Program.MainForm == null)
+            {
+                Log.Warning("Waiting for MainForm to be not null");
+                Utils.WaitForMainForm();
+            }
+
+            if (!Program.MainForm.IsHandleCreated)
+            {
+                Log.Warning("Waiting for MainForm handle to be created");
+                Utils.WaitForMainFormHandle();
+            }
+
+            Program.MainForm.Invoke(() =>
+            {
+                Program.MainForm.VideoDataUpdate(Player.Time ,Player.Length);
+            });
         }
         _stopTimeUpdate = false;
         Log.Information("Time Update ended");

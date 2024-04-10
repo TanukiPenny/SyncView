@@ -1,3 +1,4 @@
+using System.Collections;
 using MessagePack;
 using Serilog;
 using SVCommon;
@@ -41,14 +42,23 @@ public class SvListener : PacketHandler<SvClient>
             conn.IsHost = true;
         }
 
-        if (Program.MainForm != null)
+        if (Program.MainForm == null)
+        {
+            Log.Warning("Waiting for MainForm to be not null");
+            Utils.WaitForMainForm();
+        }
+
+        if (!Program.MainForm.IsHandleCreated)
+        {
+            Log.Warning("Waiting for MainForm handle to be created");
+            Utils.WaitForMainFormHandle();
+        }
+        
+        // Program.MainForm.CurrentHostLabel.Text = $"Current Host: {hostChange.Nick}";
+        Program.MainForm.Invoke(() =>
         {
             Program.MainForm.CurrentHostLabel.Text = $"Current Host: {hostChange.Nick}";
-        }
-        else
-        {
-            Program.HostStringBuffer = $"Current Host: {hostChange.Nick}";
-        }
+        });
 
         Log.Information("HostChange received: {nick}", hostChange.Nick);
     }

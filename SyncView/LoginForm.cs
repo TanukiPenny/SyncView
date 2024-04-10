@@ -20,7 +20,7 @@ namespace SyncView
         {
             if (loginResponse.Success)
             {
-                Hide();
+                Program.LoginForm.Invoke((MethodInvoker)Hide);
                 Program.StartFully();
             }
             else
