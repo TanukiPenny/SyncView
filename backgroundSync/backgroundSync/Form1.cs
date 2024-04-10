@@ -1,3 +1,8 @@
+/*
+ Author: Julian Palmisano
+ SYNCVIEW Streaming Application
+ 3 / 27 / 2024 
+*/
 using System.ComponentModel.DataAnnotations;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Runtime.Serialization;
@@ -23,7 +28,7 @@ namespace backgroundSync
             background.Dock = DockStyle.Fill;
             background.BorderStyle = BorderStyle.None;
 
-            background.Image = Image.FromFile(@"C:\Users\julpa\OneDrive\Desktop\syncviewlogos\SVBackground2.png");
+            background.Image = Image.FromFile(@"C:\Users\julpa\OneDrive\Desktop\syncviewlogos\blueTHEME.png");
             this.Controls.Add(background);
             MaximizeBox = false;
 
@@ -36,10 +41,13 @@ namespace backgroundSync
             chatBox.BorderStyle = BorderStyle.None;
             exitButton.BackColor = transparentColor;
             exitButton.FlatStyle = FlatStyle.Popup;
+            exitButton.BringToFront();
+            exitButton.Location = new Point(1515, 800);
             enterButton.BackColor = transparentColor;
             enterButton.BackColor = transparentColor;
             enterButton.FlatStyle = FlatStyle.Popup;
-
+            enterButton.BringToFront();
+            enterButton.Location = new Point(1500, 745);
         }
         private void enterButton_MouseDown(object sender, MouseEventArgs e)     //enterButtonCLICK
         {
@@ -72,8 +80,6 @@ namespace backgroundSync
                 chatDisplay.Items.Add(data);
             }
         }
-
-
         private void AddWrappedTextToDisplay(string text)
         {
             int maxCharactersPerLine = 35; // Change this to your desired character limit per line
@@ -84,7 +90,6 @@ namespace backgroundSync
                 chatDisplay.Items.Add(line);
             }
         }
-
         private List<string> WrapText(string text, int maxCharactersPerLine)
         {
             List<string> lines = new List<string>();
@@ -108,14 +113,15 @@ namespace backgroundSync
             chatDisplay.TopIndex = chatDisplay.Items.Count - 1; //automated chat scroll
             return lines;
         }
-
         private void chatBox_TextChanged(object sender, EventArgs e)
         {
             chatBox.Font = new Font("LEMONMILK", 10, FontStyle.Bold);
+            chatBox.Location = new Point(1240, 750);
+            chatBox.Width = 250;
+            chatBox.BringToFront();
         }
         private void chatDisplay_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
         }
         private void exitButton_Click(object sender, EventArgs e)
         {

@@ -36,28 +36,30 @@
             // 
             // chatBox
             // 
-            chatBox.Location = new Point(1254, 758);
+            chatBox.Location = new Point(1433, 1011);
+            chatBox.Margin = new Padding(3, 4, 3, 4);
             chatBox.Name = "chatBox";
-            chatBox.Size = new Size(294, 23);
+            chatBox.Size = new Size(335, 27);
             chatBox.TabIndex = 0;
             chatBox.TextChanged += chatBox_TextChanged;
             // 
             // chatDisplay
             // 
             chatDisplay.FormattingEnabled = true;
-            chatDisplay.ItemHeight = 15;
-            chatDisplay.Location = new Point(1244, 62);
+            chatDisplay.Location = new Point(1241, 79);
+            chatDisplay.Margin = new Padding(3, 4, 3, 4);
             chatDisplay.Name = "chatDisplay";
-            chatDisplay.Size = new Size(304, 634);
+            chatDisplay.Size = new Size(302, 624);
             chatDisplay.TabIndex = 1;
             chatDisplay.SelectedIndexChanged += chatDisplay_SelectedIndexChanged;
             // 
             // exitButton
             // 
             exitButton.BackColor = Color.Transparent;
-            exitButton.Location = new Point(1529, 826);
+            exitButton.Location = new Point(1747, 1101);
+            exitButton.Margin = new Padding(3, 4, 3, 4);
             exitButton.Name = "exitButton";
-            exitButton.Size = new Size(43, 23);
+            exitButton.Size = new Size(49, 31);
             exitButton.TabIndex = 2;
             exitButton.Text = "EXIT";
             exitButton.UseVisualStyleBackColor = false;
@@ -65,24 +67,25 @@
             // 
             // enterButton
             // 
-            enterButton.Location = new Point(1499, 758);
+            enterButton.Location = new Point(1713, 1011);
+            enterButton.Margin = new Padding(3, 4, 3, 4);
             enterButton.Name = "enterButton";
-            enterButton.Size = new Size(49, 23);
+            enterButton.Size = new Size(56, 31);
             enterButton.TabIndex = 3;
             enterButton.Text = "ENTER";
             enterButton.UseVisualStyleBackColor = true;
             enterButton.Click += enterButton_Click;
-            // dd
+            // 
             // svBG
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1584, 861);
+            ClientSize = new Size(1582, 853);
             Controls.Add(enterButton);
             Controls.Add(exitButton);
-            Controls.Add(chatDisplay);
             Controls.Add(chatBox);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Controls.Add(chatDisplay);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "svBG";
             Text = "SyncView";
             Load += svBG_Load;
