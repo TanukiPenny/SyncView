@@ -14,38 +14,47 @@ public class MediaManager
     public Uri? CurrentMedia;
     private Thread? _syncLoopThread;
     private Thread? _timeUpdateThread;
-    private bool _stopSync;
-    private bool _stopTimeUpdate;
 
     public MediaManager()
     {
         Player = new(_libVlc);
         Player.Playing += OnPlaying;
+        
+        _timeUpdateThread = new Thread(TimeUpdateLoop);
+        _timeUpdateThread.Start();
+        _syncLoopThread = new Thread(SyncLoop);
+        _syncLoopThread.Start();
     }
 
     public void NewMediaSelected(Uri uri)
     {
         Stop();
-        _stopSync = false;
-        _stopTimeUpdate = false;
         CurrentMedia = uri;
     }
     
     private void OnPlaying(object? sender, EventArgs e)
     {
+        if (Program.MainForm == null)
+        {
+            Log.Warning("Waiting for MainForm to be not null");
+            Utils.WaitForMainForm();
+        }
+
+        if (!Program.MainForm.IsHandleCreated)
+        {
+            Log.Warning("Waiting for MainForm handle to be created");
+            Utils.WaitForMainFormHandle();
+        }
+        
         Program.MainForm.Invoke(() =>
         {
             Program.MainForm.CurrentMediaLabel.Text = $"Current Media: {CurrentMedia.ToString()}";
         });
-        _timeUpdateThread = new Thread(TimeUpdateLoop);
-        _timeUpdateThread.Start();
-        if (!Program.SvClient.IsHost) return;
-        _syncLoopThread = new Thread(SyncLoop);
-        _syncLoopThread.Start();
     }
     
     public void HandleTimeSync(TimeSync timeSync)
     {
+        Log.Verbose("Handling time sync");
         long dif = Math.Abs(Player.Time - timeSync.Time);
         if (dif > 500)
         {
@@ -56,8 +65,10 @@ public class MediaManager
     private void TimeUpdateLoop()
     {
         Log.Information("Time Update started");
-        while (!_stopTimeUpdate)
+        while (true)
         {
+            if (!Player.IsPlaying) continue;
+            
             if (Program.MainForm == null)
             {
                 Log.Warning("Waiting for MainForm to be not null");
@@ -75,15 +86,19 @@ public class MediaManager
                 Program.MainForm.VideoDataUpdate(Player.Time ,Player.Length);
             });
         }
-        _stopTimeUpdate = false;
-        Log.Information("Time Update ended");
+        // ReSharper disable once FunctionNeverReturns
     }
     
     private void SyncLoop()
     {
         Log.Information("Media time sync started");
-        while (!_stopSync)
+        while (true)
         {
+            if (!Player.IsPlaying) continue;
+            if (!Program.SvClient.IsHost) continue;
+            
+            Log.Verbose("Sending time sync");
+            
             var timeSync = new TimeSync
             {
                 Time = Player.Time
@@ -91,8 +106,7 @@ public class MediaManager
             Program.SvClient?.Send(timeSync, MessageType.TimeSync);
             Thread.Sleep(500);
         }
-        _stopSync = false;
-        Log.Information("Media time sync ended");
+        // ReSharper disable once FunctionNeverReturns
     }
     
     public void Play()
@@ -100,31 +114,46 @@ public class MediaManager
         if (CurrentMedia == null) return;
 
         Media media = new Media(_libVlc, CurrentMedia);
-        
         Player.Play(media);
 
         if (!Program.SvClient.IsHost) return;
+        
+        Log.Information("Sending new media");
         
         var play = new Play
         {
             Uri = CurrentMedia
         };
-        Log.Information("Sending new media");
         Program.SvClient.Send(play, MessageType.Play);
     }
     
     public void Pause()
     {
-        _stopSync = Player.IsPlaying;
-        _stopTimeUpdate = Player.IsPlaying;
         Player.Pause();
+
+        if (!Program.SvClient.IsHost) return;
+        Program.SvClient.Send(new Pause(), MessageType.Pause);
     }
     
     public void Stop()
     {
-        Program.MainForm.CurrentMediaLabel.Text = "Current Media: None";
-        _stopSync = true;
-        _stopTimeUpdate = true;
+        if (Program.MainForm == null)
+        {
+            Log.Warning("Waiting for MainForm to be not null");
+            Utils.WaitForMainForm();
+        }
+
+        if (!Program.MainForm.IsHandleCreated)
+        {
+            Log.Warning("Waiting for MainForm handle to be created");
+            Utils.WaitForMainFormHandle();
+        }
+        
+        Program.MainForm.Invoke(() =>
+        {
+            Program.MainForm.CurrentMediaLabel.Text = "Current Media: None";
+        });
+        
         CurrentMedia = null;
         Player.Stop();
     }

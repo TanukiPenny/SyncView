@@ -16,7 +16,7 @@ static class Program
     [STAThread]
     static void Main()
     {
-        // AllocConsole();
+        AllocConsole();
         
         Log.Logger = new LoggerConfiguration().WriteTo.Console(outputTemplate:
             "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}").MinimumLevel.Debug().CreateLogger();

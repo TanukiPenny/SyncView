@@ -107,7 +107,6 @@ public partial class MainForm : Form
         if (!Program.MediaManager.Player.IsPlaying) return;
         if (!Program.SvClient.IsHost) return;
         Program.MediaManager.Pause();
-        Program.SvClient.Send(new Pause(), MessageType.Pause);
     }
 
     private void skipForward30Button_Click(object sender, EventArgs e)
