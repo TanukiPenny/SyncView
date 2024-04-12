@@ -34,8 +34,10 @@
             // 
             // mediaList
             // 
+            mediaList.BackColor = Color.FromArgb(57, 67, 64);
+            mediaList.ForeColor = Color.White;
             mediaList.FormattingEnabled = true;
-            mediaList.ItemHeight = 25;
+            mediaList.ItemHeight = 15;
             mediaList.Location = new Point(12, 53);
             mediaList.Name = "mediaList";
             mediaList.Size = new Size(454, 379);
@@ -45,16 +47,18 @@
             // label
             // 
             label.AutoSize = true;
-            label.Location = new Point(60, 12);
+            label.ForeColor = Color.White;
+            label.Location = new Point(114, 20);
             label.Name = "label";
-            label.Size = new Size(357, 25);
+            label.Size = new Size(239, 15);
             label.TabIndex = 1;
             label.Text = "Double click to select media, close to cancel";
             // 
             // MediaSelector
             // 
             AutoScaleMode = AutoScaleMode.None;
-            ClientSize = new Size(478, 444);
+            BackColor = Color.FromArgb(57, 67, 64);
+            ClientSize = new Size(484, 461);
             Controls.Add(label);
             Controls.Add(mediaList);
             MaximumSize = new Size(500, 500);
