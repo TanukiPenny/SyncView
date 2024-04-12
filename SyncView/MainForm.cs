@@ -13,9 +13,8 @@ public partial class MainForm : Form
     public MainForm()
     {
         InitializeComponent();
-
-        connectedUsersList.DataSource = Program.ConnectedUsers;
-        Program.ConnectedUsers.Add(Program.SvClient.Nick);
+        
+        // TODO: Send system message of your own join
 
         VideoView_Loaded();
     }

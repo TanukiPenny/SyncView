@@ -11,12 +11,11 @@ static class Program
     public static MainForm? MainForm;
     public static readonly SvClient SvClient = new();
     public static readonly MediaManager MediaManager = new();
-    public static readonly BindingList<string> ConnectedUsers = new();
     
     [STAThread]
     static void Main()
     {
-        AllocConsole();
+        // AllocConsole();
         
         Log.Logger = new LoggerConfiguration().WriteTo.Console(outputTemplate:
             "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}").MinimumLevel.Debug().CreateLogger();

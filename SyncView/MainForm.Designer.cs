@@ -43,10 +43,9 @@ partial class MainForm
         volumeBar = new TrackBar();
         volMinLabel = new Label();
         volMaxLabel = new Label();
-        connectedUsersList = new ListBox();
-        connectedUsersLabel = new Label();
         currentMediaLabel = new Label();
         currentHostLabel = new Label();
+        volumeLabel = new Label();
         ((System.ComponentModel.ISupportInitialize)videoView).BeginInit();
         ((System.ComponentModel.ISupportInitialize)progressBar).BeginInit();
         ((System.ComponentModel.ISupportInitialize)volumeBar).BeginInit();
@@ -55,87 +54,106 @@ partial class MainForm
         // videoView
         // 
         videoView.BackColor = Color.Black;
-        videoView.Location = new Point(4, 4);
+        videoView.Location = new Point(23, 20);
         videoView.Margin = new Padding(0);
         videoView.MediaPlayer = null;
         videoView.Name = "videoView";
-        videoView.Size = new Size(1200, 675);
+        videoView.Size = new Size(1189, 669);
         videoView.TabIndex = 0;
         videoView.Text = "videoView";
         // 
         // stopButton
         // 
+        stopButton.BackColor = Color.FromArgb(65, 44, 30);
+        stopButton.FlatStyle = FlatStyle.Flat;
         stopButton.Font = new Font("Segoe MDL2 Assets", 24F);
-        stopButton.Location = new Point(480, 803);
+        stopButton.ForeColor = Color.White;
+        stopButton.Location = new Point(480, 802);
         stopButton.Margin = new Padding(0);
         stopButton.Name = "stopButton";
         stopButton.Size = new Size(50, 50);
         stopButton.TabIndex = 18;
         stopButton.Text = "";
-        stopButton.UseVisualStyleBackColor = true;
+        stopButton.UseVisualStyleBackColor = false;
         stopButton.Click += stopButton_Click;
         // 
         // skipForward30Button
         // 
+        skipForward30Button.BackColor = Color.FromArgb(65, 44, 30);
+        skipForward30Button.FlatStyle = FlatStyle.Flat;
         skipForward30Button.Font = new Font("Segoe MDL2 Assets", 24F);
-        skipForward30Button.Location = new Point(552, 753);
+        skipForward30Button.ForeColor = Color.White;
+        skipForward30Button.Location = new Point(552, 751);
         skipForward30Button.Margin = new Padding(0);
         skipForward30Button.Name = "skipForward30Button";
         skipForward30Button.Size = new Size(50, 50);
         skipForward30Button.TabIndex = 17;
         skipForward30Button.Text = "";
-        skipForward30Button.UseVisualStyleBackColor = true;
+        skipForward30Button.UseVisualStyleBackColor = false;
         skipForward30Button.Click += skipForward30Button_Click;
         // 
         // skipBack10Button
         // 
+        skipBack10Button.BackColor = Color.FromArgb(65, 44, 30);
+        skipBack10Button.FlatStyle = FlatStyle.Flat;
         skipBack10Button.Font = new Font("Segoe MDL2 Assets", 24F);
-        skipBack10Button.Location = new Point(402, 753);
+        skipBack10Button.ForeColor = Color.White;
+        skipBack10Button.Location = new Point(402, 751);
         skipBack10Button.Margin = new Padding(0);
         skipBack10Button.Name = "skipBack10Button";
         skipBack10Button.Size = new Size(50, 50);
         skipBack10Button.TabIndex = 16;
         skipBack10Button.Text = "";
-        skipBack10Button.UseVisualStyleBackColor = true;
+        skipBack10Button.UseVisualStyleBackColor = false;
         skipBack10Button.Click += SkipBack10ButtonClick;
         // 
         // pauseButton
         // 
+        pauseButton.BackColor = Color.FromArgb(65, 44, 30);
+        pauseButton.FlatStyle = FlatStyle.Flat;
         pauseButton.Font = new Font("Segoe MDL2 Assets", 24F);
-        pauseButton.Location = new Point(502, 753);
+        pauseButton.ForeColor = Color.White;
+        pauseButton.Location = new Point(502, 751);
         pauseButton.Margin = new Padding(0);
         pauseButton.Name = "pauseButton";
         pauseButton.Size = new Size(50, 50);
         pauseButton.TabIndex = 15;
         pauseButton.Text = "";
-        pauseButton.UseVisualStyleBackColor = true;
+        pauseButton.UseVisualStyleBackColor = false;
         pauseButton.Click += pauseButton_Click;
         // 
         // playButton
         // 
+        playButton.BackColor = Color.FromArgb(65, 44, 30);
+        playButton.FlatStyle = FlatStyle.Flat;
         playButton.Font = new Font("Segoe MDL2 Assets", 24F);
-        playButton.Location = new Point(452, 753);
+        playButton.ForeColor = Color.White;
+        playButton.Location = new Point(452, 751);
         playButton.Margin = new Padding(0);
         playButton.Name = "playButton";
         playButton.Size = new Size(50, 50);
         playButton.TabIndex = 14;
         playButton.Text = "";
-        playButton.UseVisualStyleBackColor = true;
+        playButton.UseVisualStyleBackColor = false;
         playButton.Click += playButton_Click;
         // 
         // mediaSelectorButton
         // 
-        mediaSelectorButton.Location = new Point(915, 712);
+        mediaSelectorButton.BackColor = Color.FromArgb(65, 44, 30);
+        mediaSelectorButton.FlatStyle = FlatStyle.Flat;
+        mediaSelectorButton.Location = new Point(915, 727);
         mediaSelectorButton.Name = "mediaSelectorButton";
         mediaSelectorButton.Size = new Size(264, 38);
         mediaSelectorButton.TabIndex = 13;
         mediaSelectorButton.Text = "Select New Media";
-        mediaSelectorButton.UseVisualStyleBackColor = true;
+        mediaSelectorButton.UseVisualStyleBackColor = false;
         mediaSelectorButton.Click += mediaSelectorButton_Click;
         // 
         // timeLeft
         // 
         timeLeft.AutoSize = true;
+        timeLeft.BackColor = Color.FromArgb(65, 44, 30);
+        timeLeft.ForeColor = Color.White;
         timeLeft.Location = new Point(823, 742);
         timeLeft.Name = "timeLeft";
         timeLeft.Size = new Size(49, 15);
@@ -145,6 +163,8 @@ partial class MainForm
         // timePassed
         // 
         timePassed.AutoSize = true;
+        timePassed.BackColor = Color.FromArgb(65, 44, 30);
+        timePassed.ForeColor = Color.White;
         timePassed.Location = new Point(143, 742);
         timePassed.Name = "timePassed";
         timePassed.Size = new Size(49, 15);
@@ -153,8 +173,9 @@ partial class MainForm
         // 
         // progressBar
         // 
+        progressBar.BackColor = Color.FromArgb(65, 44, 30);
         progressBar.LargeChange = 10000;
-        progressBar.Location = new Point(126, 708);
+        progressBar.Location = new Point(126, 715);
         progressBar.Margin = new Padding(0);
         progressBar.Maximum = 10000000;
         progressBar.Name = "progressBar";
@@ -167,12 +188,12 @@ partial class MainForm
         // 
         // volumeBar
         // 
-        volumeBar.Location = new Point(30, 695);
+        volumeBar.BackColor = Color.FromArgb(65, 44, 30);
+        volumeBar.Location = new Point(189, 790);
         volumeBar.Maximum = 100;
         volumeBar.Name = "volumeBar";
-        volumeBar.Orientation = Orientation.Vertical;
         volumeBar.RightToLeft = RightToLeft.No;
-        volumeBar.Size = new Size(45, 145);
+        volumeBar.Size = new Size(145, 45);
         volumeBar.TabIndex = 19;
         volumeBar.Value = 100;
         volumeBar.ValueChanged += volumeBar_ValueChanged;
@@ -180,7 +201,9 @@ partial class MainForm
         // volMinLabel
         // 
         volMinLabel.AutoSize = true;
-        volMinLabel.Location = new Point(66, 820);
+        volMinLabel.BackColor = Color.FromArgb(65, 44, 30);
+        volMinLabel.ForeColor = Color.White;
+        volMinLabel.Location = new Point(189, 832);
         volMinLabel.Name = "volMinLabel";
         volMinLabel.Size = new Size(23, 15);
         volMinLabel.TabIndex = 20;
@@ -189,34 +212,19 @@ partial class MainForm
         // volMaxLabel
         // 
         volMaxLabel.AutoSize = true;
-        volMaxLabel.Location = new Point(66, 702);
+        volMaxLabel.BackColor = Color.FromArgb(65, 44, 30);
+        volMaxLabel.ForeColor = Color.White;
+        volMaxLabel.Location = new Point(299, 832);
         volMaxLabel.Name = "volMaxLabel";
         volMaxLabel.Size = new Size(35, 15);
         volMaxLabel.TabIndex = 21;
         volMaxLabel.Text = "100%";
         // 
-        // connectedUsersList
-        // 
-        connectedUsersList.FormattingEnabled = true;
-        connectedUsersList.ItemHeight = 15;
-        connectedUsersList.Location = new Point(1207, 26);
-        connectedUsersList.Name = "connectedUsersList";
-        connectedUsersList.Size = new Size(373, 124);
-        connectedUsersList.TabIndex = 22;
-        // 
-        // connectedUsersLabel
-        // 
-        connectedUsersLabel.AutoSize = true;
-        connectedUsersLabel.Location = new Point(1207, 8);
-        connectedUsersLabel.Name = "connectedUsersLabel";
-        connectedUsersLabel.Size = new Size(96, 15);
-        connectedUsersLabel.TabIndex = 23;
-        connectedUsersLabel.Text = "Connected Users";
-        // 
         // currentMediaLabel
         // 
         currentMediaLabel.AutoSize = true;
-        currentMediaLabel.Location = new Point(143, 688);
+        currentMediaLabel.BackColor = Color.FromArgb(65, 44, 30);
+        currentMediaLabel.Location = new Point(139, 695);
         currentMediaLabel.Name = "currentMediaLabel";
         currentMediaLabel.Size = new Size(118, 15);
         currentMediaLabel.TabIndex = 24;
@@ -226,20 +234,32 @@ partial class MainForm
         // currentHostLabel
         // 
         currentHostLabel.AutoSize = true;
-        currentHostLabel.Location = new Point(915, 688);
+        currentHostLabel.BackColor = Color.FromArgb(65, 44, 30);
+        currentHostLabel.Location = new Point(915, 699);
         currentHostLabel.Name = "currentHostLabel";
         currentHostLabel.Size = new Size(98, 15);
         currentHostLabel.TabIndex = 25;
         currentHostLabel.Text = "currentHostLabel";
         // 
+        // volumeLabel
+        // 
+        volumeLabel.AutoSize = true;
+        volumeLabel.BackColor = Color.FromArgb(65, 44, 30);
+        volumeLabel.Location = new Point(237, 772);
+        volumeLabel.Name = "volumeLabel";
+        volumeLabel.Size = new Size(47, 15);
+        volumeLabel.TabIndex = 26;
+        volumeLabel.Text = "Volume";
+        // 
         // MainForm
         // 
         AutoScaleMode = AutoScaleMode.None;
+        BackgroundImage = Properties.Resources.brownTHEME;
+        BackgroundImageLayout = ImageLayout.Stretch;
         ClientSize = new Size(1584, 861);
+        Controls.Add(volumeLabel);
         Controls.Add(currentHostLabel);
         Controls.Add(currentMediaLabel);
-        Controls.Add(connectedUsersLabel);
-        Controls.Add(connectedUsersList);
         Controls.Add(volMaxLabel);
         Controls.Add(volMinLabel);
         Controls.Add(volumeBar);
@@ -253,6 +273,8 @@ partial class MainForm
         Controls.Add(timePassed);
         Controls.Add(progressBar);
         Controls.Add(videoView);
+        DoubleBuffered = true;
+        ForeColor = Color.White;
         Icon = (Icon)resources.GetObject("$this.Icon");
         Margin = new Padding(2);
         MaximumSize = new Size(1600, 900);
@@ -281,8 +303,7 @@ partial class MainForm
     private TrackBar volumeBar;
     private Label volMinLabel;
     private Label volMaxLabel;
-    private ListBox connectedUsersList;
-    private Label connectedUsersLabel;
     private Label currentMediaLabel;
     private Label currentHostLabel;
+    private Label volumeLabel;
 }

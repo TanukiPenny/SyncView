@@ -78,13 +78,14 @@ public class SvListener : PacketHandler<SvClient>
 
     public override void OnUserJoin(SvClient conn, UserJoin userJoin)
     {
-        Program.ConnectedUsers.Add(userJoin.Nick);
+        // TODO: System messages for user joins in chat
         Log.Information("UserJoin received: {nick}", userJoin.Nick);
     }
 
     public override void OnUserLeave(SvClient conn, UserLeave userLeave)
     {
-        Program.ConnectedUsers.Remove(userLeave.Nick);
+        // TODO: System messages for user leaves in chat
+        Log.Information("UserJoin received: {nick}", userLeave.Nick);
     }
 
     public override void OnPause(SvClient conn)

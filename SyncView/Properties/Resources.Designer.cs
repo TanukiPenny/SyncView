@@ -63,6 +63,16 @@ namespace SyncView.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap brownTHEME {
+            get {
+                object obj = ResourceManager.GetObject("brownTHEME", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap noun_fast_backward6728146 {
             get {
                 object obj = ResourceManager.GetObject("noun-fast-backward6728146", resourceCulture);
