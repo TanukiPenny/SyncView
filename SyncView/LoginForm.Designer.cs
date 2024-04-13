@@ -76,7 +76,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightSteelBlue;
+            BackColor = SystemColors.Control;
             BackgroundImage = Properties.Resources.SVLFINAL;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(825, 410);
