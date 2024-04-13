@@ -64,7 +64,7 @@ partial class MainForm
         // 
         // stopButton
         // 
-        stopButton.BackColor = Color.FromArgb(65, 44, 30);
+        stopButton.BackColor = Color.FromArgb(76, 88, 68);
         stopButton.FlatStyle = FlatStyle.Flat;
         stopButton.Font = new Font("Segoe MDL2 Assets", 24F);
         stopButton.ForeColor = Color.White;
@@ -79,7 +79,7 @@ partial class MainForm
         // 
         // skipForward30Button
         // 
-        skipForward30Button.BackColor = Color.FromArgb(65, 44, 30);
+        skipForward30Button.BackColor = Color.FromArgb(76, 88, 68);
         skipForward30Button.FlatStyle = FlatStyle.Flat;
         skipForward30Button.Font = new Font("Segoe MDL2 Assets", 24F);
         skipForward30Button.ForeColor = Color.White;
@@ -94,7 +94,7 @@ partial class MainForm
         // 
         // skipBack10Button
         // 
-        skipBack10Button.BackColor = Color.FromArgb(65, 44, 30);
+        skipBack10Button.BackColor = Color.FromArgb(76, 88, 68);
         skipBack10Button.FlatStyle = FlatStyle.Flat;
         skipBack10Button.Font = new Font("Segoe MDL2 Assets", 24F);
         skipBack10Button.ForeColor = Color.White;
@@ -109,7 +109,7 @@ partial class MainForm
         // 
         // pauseButton
         // 
-        pauseButton.BackColor = Color.FromArgb(65, 44, 30);
+        pauseButton.BackColor = Color.FromArgb(76, 88, 68);
         pauseButton.FlatStyle = FlatStyle.Flat;
         pauseButton.Font = new Font("Segoe MDL2 Assets", 24F);
         pauseButton.ForeColor = Color.White;
@@ -124,7 +124,7 @@ partial class MainForm
         // 
         // playButton
         // 
-        playButton.BackColor = Color.FromArgb(65, 44, 30);
+        playButton.BackColor = Color.FromArgb(76, 88, 68);
         playButton.FlatStyle = FlatStyle.Flat;
         playButton.Font = new Font("Segoe MDL2 Assets", 24F);
         playButton.ForeColor = Color.White;
@@ -139,9 +139,9 @@ partial class MainForm
         // 
         // mediaSelectorButton
         // 
-        mediaSelectorButton.BackColor = Color.FromArgb(65, 44, 30);
+        mediaSelectorButton.BackColor = Color.FromArgb(76, 88, 68);
         mediaSelectorButton.FlatStyle = FlatStyle.Flat;
-        mediaSelectorButton.Location = new Point(915, 727);
+        mediaSelectorButton.Location = new Point(915, 741);
         mediaSelectorButton.Name = "mediaSelectorButton";
         mediaSelectorButton.Size = new Size(264, 38);
         mediaSelectorButton.TabIndex = 13;
@@ -152,7 +152,7 @@ partial class MainForm
         // timeLeft
         // 
         timeLeft.AutoSize = true;
-        timeLeft.BackColor = Color.FromArgb(65, 44, 30);
+        timeLeft.BackColor = Color.FromArgb(76, 88, 68);
         timeLeft.ForeColor = Color.White;
         timeLeft.Location = new Point(823, 742);
         timeLeft.Name = "timeLeft";
@@ -173,7 +173,7 @@ partial class MainForm
         // 
         // progressBar
         // 
-        progressBar.BackColor = Color.FromArgb(65, 44, 30);
+        progressBar.BackColor = Color.FromArgb(76, 88, 68);
         progressBar.LargeChange = 10000;
         progressBar.Location = new Point(126, 715);
         progressBar.Margin = new Padding(0);
@@ -188,7 +188,7 @@ partial class MainForm
         // 
         // volumeBar
         // 
-        volumeBar.BackColor = Color.FromArgb(65, 44, 30);
+        volumeBar.BackColor = Color.FromArgb(76, 88, 68);
         volumeBar.Location = new Point(189, 790);
         volumeBar.Maximum = 100;
         volumeBar.Name = "volumeBar";
@@ -201,7 +201,7 @@ partial class MainForm
         // volMinLabel
         // 
         volMinLabel.AutoSize = true;
-        volMinLabel.BackColor = Color.FromArgb(65, 44, 30);
+        volMinLabel.BackColor = Color.FromArgb(76, 88, 68);
         volMinLabel.ForeColor = Color.White;
         volMinLabel.Location = new Point(189, 832);
         volMinLabel.Name = "volMinLabel";
@@ -212,7 +212,7 @@ partial class MainForm
         // volMaxLabel
         // 
         volMaxLabel.AutoSize = true;
-        volMaxLabel.BackColor = Color.FromArgb(65, 44, 30);
+        volMaxLabel.BackColor = Color.FromArgb(76, 88, 68);
         volMaxLabel.ForeColor = Color.White;
         volMaxLabel.Location = new Point(299, 832);
         volMaxLabel.Name = "volMaxLabel";
@@ -223,7 +223,7 @@ partial class MainForm
         // currentMediaLabel
         // 
         currentMediaLabel.AutoSize = true;
-        currentMediaLabel.BackColor = Color.FromArgb(65, 44, 30);
+        currentMediaLabel.BackColor = Color.FromArgb(76, 88, 68);
         currentMediaLabel.Location = new Point(139, 695);
         currentMediaLabel.Name = "currentMediaLabel";
         currentMediaLabel.Size = new Size(118, 15);
@@ -234,8 +234,8 @@ partial class MainForm
         // currentHostLabel
         // 
         currentHostLabel.AutoSize = true;
-        currentHostLabel.BackColor = Color.FromArgb(65, 44, 30);
-        currentHostLabel.Location = new Point(915, 699);
+        currentHostLabel.BackColor = Color.FromArgb(76, 88, 68);
+        currentHostLabel.Location = new Point(915, 713);
         currentHostLabel.Name = "currentHostLabel";
         currentHostLabel.Size = new Size(98, 15);
         currentHostLabel.TabIndex = 25;
@@ -244,7 +244,7 @@ partial class MainForm
         // volumeLabel
         // 
         volumeLabel.AutoSize = true;
-        volumeLabel.BackColor = Color.FromArgb(65, 44, 30);
+        volumeLabel.BackColor = Color.FromArgb(76, 88, 68);
         volumeLabel.Location = new Point(237, 772);
         volumeLabel.Name = "volumeLabel";
         volumeLabel.Size = new Size(47, 15);
@@ -254,7 +254,7 @@ partial class MainForm
         // MainForm
         // 
         AutoScaleMode = AutoScaleMode.None;
-        BackgroundImage = Properties.Resources.brownTHEME;
+        BackgroundImage = Properties.Resources.FINALBACKGROUND;
         BackgroundImageLayout = ImageLayout.Stretch;
         ClientSize = new Size(1584, 861);
         Controls.Add(volumeLabel);

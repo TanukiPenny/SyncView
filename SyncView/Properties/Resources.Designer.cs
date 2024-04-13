@@ -73,6 +73,16 @@ namespace SyncView.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FINALBACKGROUND {
+            get {
+                object obj = ResourceManager.GetObject("FINALBACKGROUND", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap noun_fast_backward6728146 {
             get {
                 object obj = ResourceManager.GetObject("noun-fast-backward6728146", resourceCulture);
@@ -116,6 +126,26 @@ namespace SyncView.Properties {
         internal static System.Drawing.Bitmap noun_stop_6728150 {
             get {
                 object obj = ResourceManager.GetObject("noun-stop-6728150", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap svbgFINAL {
+            get {
+                object obj = ResourceManager.GetObject("svbgFINAL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SVLFINAL {
+            get {
+                object obj = ResourceManager.GetObject("SVLFINAL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
