@@ -163,7 +163,7 @@ partial class MainForm
         // timePassed
         // 
         timePassed.AutoSize = true;
-        timePassed.BackColor = Color.FromArgb(65, 44, 30);
+        timePassed.BackColor = Color.FromArgb(76, 88, 68);
         timePassed.ForeColor = Color.White;
         timePassed.Location = new Point(143, 742);
         timePassed.Name = "timePassed";

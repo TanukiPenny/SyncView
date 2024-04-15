@@ -65,27 +65,28 @@ public class MediaManager
     
     private void TimeUpdateLoop()
     {
+        if (Program.MainForm == null)
+        {
+            Log.Warning("Waiting for MainForm to be not null");
+            Utils.WaitForMainForm();
+        }
+
+        if (!Program.MainForm.IsHandleCreated)
+        {
+            Log.Warning("Waiting for MainForm handle to be created");
+            Utils.WaitForMainFormHandle();
+        }
+        
         Log.Information("Time Update started");
         while (true)
         {
             if (!Player.IsPlaying) continue;
-            
-            if (Program.MainForm == null)
-            {
-                Log.Warning("Waiting for MainForm to be not null");
-                Utils.WaitForMainForm();
-            }
-
-            if (!Program.MainForm.IsHandleCreated)
-            {
-                Log.Warning("Waiting for MainForm handle to be created");
-                Utils.WaitForMainFormHandle();
-            }
 
             Program.MainForm.Invoke(() =>
             {
                 Program.MainForm.VideoDataUpdate(Player.Time ,Player.Length);
             });
+            Thread.Sleep(500);
         }
         // ReSharper disable once FunctionNeverReturns
     }
