@@ -1,3 +1,4 @@
+// PB, JP start
 using System.ComponentModel;
 using LibVLCSharp.Shared;
 using SVCommon;
@@ -133,3 +134,4 @@ public partial class MainForm : Form
         volMaxLabel.Text = $"{volumeBar.Value}%";
     }
 }
+// PB, JP end

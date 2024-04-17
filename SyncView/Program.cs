@@ -1,3 +1,4 @@
+// JK, PB, MB, JP start
 using System.ComponentModel;
 using System.Net.Mime;
 using System.Runtime.InteropServices;
@@ -35,3 +36,4 @@ static class Program
     [return: MarshalAs(UnmanagedType.Bool)]
     static extern bool AllocConsole();
 }
+// JK, PB, MB, JP end
