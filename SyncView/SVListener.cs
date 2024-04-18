@@ -22,6 +22,8 @@ public class SvListener : PacketHandler<SvClient>
 
     public override void OnLoginResponse(SvClient conn, LoginResponse loginResponse)
     {
+
+        
         Task.Run(() =>
         {
             Program.LoginForm.HandleLoginResult(loginResponse);
@@ -55,7 +57,6 @@ public class SvListener : PacketHandler<SvClient>
             Utils.WaitForMainFormHandle();
         }
         
-        // Program.MainForm.CurrentHostLabel.Text = $"Current Host: {hostChange.Nick}";
         Program.MainForm.Invoke(() =>
         {
             Program.MainForm.CurrentHostLabel.Text = $"Current Host: {hostChange.Nick}";
@@ -90,8 +91,11 @@ public class SvListener : PacketHandler<SvClient>
             Log.Warning("Waiting for MainForm handle to be created");
             Utils.WaitForMainFormHandle();
         }
-        
-        Program.MainForm.AddChatMessage("System", $"{userJoin.Nick} has joined!");
+
+        Program.MainForm.Invoke(() =>
+        {
+            Program.MainForm.AddChatMessage("System", $"{userJoin.Nick} has joined!");
+        });
         
         Log.Information("UserJoin received: {nick}", userJoin.Nick);
     }
@@ -109,8 +113,11 @@ public class SvListener : PacketHandler<SvClient>
             Log.Warning("Waiting for MainForm handle to be created");
             Utils.WaitForMainFormHandle();
         }
-        
-        Program.MainForm.AddChatMessage("System", $"{userLeave.Nick} has left");
+
+        Program.MainForm.Invoke(() =>
+        {
+            Program.MainForm.AddChatMessage("System", $"{userLeave.Nick} has left");
+        });
         
         Log.Information("UserJoin received: {nick}", userLeave.Nick);
     }
@@ -153,8 +160,11 @@ public class SvListener : PacketHandler<SvClient>
             Log.Warning("Waiting for MainForm handle to be created");
             Utils.WaitForMainFormHandle();
         }
-        
-        Program.MainForm.AddChatMessage(msg.Nick, msg.Message);
+
+        Program.MainForm.Invoke(() =>
+        {
+            Program.MainForm.AddChatMessage(msg.Nick, msg.Message);
+        });
     }
 }
 // PB end

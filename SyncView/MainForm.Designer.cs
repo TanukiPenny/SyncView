@@ -272,6 +272,8 @@ partial class MainForm
         chatBox.Location = new Point(1236, 20);
         chatBox.Multiline = true;
         chatBox.Name = "chatBox";
+        chatBox.ReadOnly = true;
+        chatBox.ScrollBars = ScrollBars.Vertical;
         chatBox.Size = new Size(328, 737);
         chatBox.TabIndex = 29;
         // 
