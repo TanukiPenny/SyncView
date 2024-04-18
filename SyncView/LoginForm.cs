@@ -30,9 +30,11 @@ namespace SyncView
             }
 
         }
-        private List<string> randomNicknames = new List<string>
+        //MB
+        private List<string> randomNicknames = new List<string> //list of random users
+
         {
-           "shaquille.oatmeal","hanging_with_my_gnomies","fast_and_the_curious","google_was_my_idea","fedora_the_explorer","Notch","oprahwindfury","chickenriceandbeans","buh-buh-bacon",
+           "shaquille.oatmeal","hanging_with_my_gnomies","fast_and_the_curious","google_was_my_idea","fedora_the_explorer","notch","oprahwindfury","chickenriceandbeans","buh-buh-bacon",
            "applebottomjeans","toastedbagelwithcreamcheese","baeconandeggz","bigfootisreal"
         };
 
@@ -40,11 +42,16 @@ namespace SyncView
         {
             nicknameBox.Text = GetRandomNicknames();
         }
-        private string GetRandomNicknames()
+        private string GetRandomNicknames() //inputing the random user into the textbox
         {
             Random rand = new Random();
-            int index =rand.Next(randomNicknames.Count);
+            int index = rand.Next(randomNicknames.Count);
             return randomNicknames[index];
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

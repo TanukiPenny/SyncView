@@ -41,7 +41,7 @@ public partial class MainForm : Form
 
     private int _tempTime;
 
-    public void VideoDataUpdate(long time, long length)
+    public void VideoDataUpdate(long time, long length) //updates the video timing 
     {
         progressBar.Maximum = (int)length;
 
@@ -84,13 +84,6 @@ public partial class MainForm : Form
     {
         _mouseDown = false;
     }
-
-    private void SkipBack10ButtonClick(object sender, EventArgs e)
-    {
-        if (!Program.SvClient.IsHost) return;
-        Program.MediaManager.SeekTo(Program.MediaManager.Player.Time - 10000);
-    }
-
     private void playButton_Click(object sender, EventArgs e)
     {
         if (!Program.SvClient.IsHost) return;
@@ -103,20 +96,25 @@ public partial class MainForm : Form
         Program.MediaManager.Play();
     }
 
-    private void pauseButton_Click(object sender, EventArgs e)
+    private void pauseButton_Click(object sender, EventArgs e) //allows users to pause with a button
     {
         if (!Program.MediaManager.Player.IsPlaying) return;
         if (!Program.SvClient.IsHost) return;
         Program.MediaManager.Pause();
     }
 
-    private void skipForward30Button_Click(object sender, EventArgs e)
+    private void skipForward30Button_Click(object sender, EventArgs e) //30 second fast foward
     {
         if (!Program.SvClient.IsHost) return;
         Program.MediaManager.SeekTo(Program.MediaManager.Player.Time + 30000);
     }
+    private void SkipBack10ButtonClick(object sender, EventArgs e) //10 second rewind
+    {
+        if (!Program.SvClient.IsHost) return;
+        Program.MediaManager.SeekTo(Program.MediaManager.Player.Time - 10000);
+    }
 
-    private void stopButton_Click(object sender, EventArgs e)
+    private void stopButton_Click(object sender, EventArgs e) //allows users to stop the video entierly
     {
         if (!Program.SvClient.IsHost) return;
         Program.MediaManager.Stop();
