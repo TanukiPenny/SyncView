@@ -1,0 +1,78 @@
+/*
+Author: Julian
+CHAT FUNCTIONALITY
+*/       
+
+CODE FOR CHAT FUNCTIONALITY ( NEEDS CONNECTION TO SERVER )
+
+	 private void enterButton_MouseDown(object sender, MouseEventArgs e)     //enterButtonCLICK
+        {
+            if (MouseButtons == MouseButtons.Left)              //Julian
+            {
+                string inputText = chatBox.Text.Trim();
+                dataList.Add(inputText);
+                chatDisplay.Items.Add(inputText);
+                chatDisplay.Font = new Font("ND LOGOS Regular", 10, FontStyle.Bold);
+                chatBox.Clear();
+            }
+        }
+        private void chatBox_KeyDown(object sender, KeyEventArgs e)    //enterButtonKEY
+        {
+            if (e.KeyCode == Keys.Enter)            //Julian
+            {
+                e.SuppressKeyPress = true;
+                string inputText = chatBox.Text.Trim();
+                dataList.Add(inputText);
+                chatDisplay.Font = new Font("ND LOGOS Regular", 10, FontStyle.Bold);
+                AddWrappedTextToDisplay(inputText);
+                chatBox.Clear();
+            }
+        }
+        private void UpdateChatDisplay()        //chatDisplayUPDATE
+        {           
+            chatDisplay.Items.Clear();              //Julian
+            foreach (string data in dataList)
+            {
+                chatDisplay.Items.Add(data);
+            }
+        }
+        private void AddWrappedTextToDisplay(string text)
+        {
+            int maxCharactersPerLine = 35; // Change this to your desired character limit per line
+            List<string> wrappedLines = WrapText(text, maxCharactersPerLine);       //Julian
+            foreach (string line in wrappedLines)
+            {
+                dataList.Add(line);
+                chatDisplay.Items.Add(line);
+            }
+        }
+        private List<string> WrapText(string text, int maxCharactersPerLine)    //text wrapping(goes with text limit)
+        {
+            List<string> lines = new List<string>();
+            string[] words = text.Split(' ');               //Julian
+
+            string currentLine = "";
+            foreach (string word in words)
+            {
+                if ((currentLine + word).Length > maxCharactersPerLine)
+                {
+                    lines.Add(currentLine.Trim());
+                    currentLine = "";
+                }
+                currentLine += word + " ";
+            }
+            if (!string.IsNullOrWhiteSpace(currentLine))
+            {
+                lines.Add(currentLine.Trim());
+            }
+            chatDisplay.Items.Add(""); //linespace inbetween each input
+            chatDisplay.TopIndex = chatDisplay.Items.Count - 1; //automated chat scroll
+            return lines;
+        }
+        private void chatBox_TextChanged(object sender, EventArgs e)
+        {
+            chatBox.Font = new Font("LEMONMILK", 10, FontStyle.Bold);
+            chatBox.Location = new Point(1240, 750);
+            chatBox.Width = 250;
+            chatBox.BringToFront();
+        }
