@@ -33,6 +33,8 @@
             UsernameLabel = new Label();
             LoginButton = new Button();
             randomnameButton = new Button();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // nicknameBox
@@ -80,9 +82,17 @@
             randomnameButton.Name = "randomnameButton";
             randomnameButton.Size = new Size(102, 23);
             randomnameButton.TabIndex = 5;
-            randomnameButton.Text = "Random";
+            randomnameButton.Text = "Randomize";
             randomnameButton.UseVisualStyleBackColor = false;
             randomnameButton.Click += randomnameButton_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(445, 244);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(19, 20);
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
             // 
             // LoginForm
             // 
@@ -92,6 +102,7 @@
             BackgroundImage = Properties.Resources.SVLFINAL;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(825, 410);
+            Controls.Add(pictureBox1);
             Controls.Add(randomnameButton);
             Controls.Add(LoginButton);
             Controls.Add(UsernameLabel);
@@ -100,6 +111,7 @@
             Margin = new Padding(2);
             Name = "LoginForm";
             Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -109,5 +121,6 @@
         private Label UsernameLabel;
         private Button LoginButton;
         private Button randomnameButton;
+        private PictureBox pictureBox1;
     }
 }

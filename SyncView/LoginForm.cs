@@ -32,8 +32,8 @@ namespace SyncView
         }
         private List<string> randomNicknames = new List<string>
         {
-           "shaquille.oatmeal","hanging_with_my_gnomies","fast_and_the_curious","google_was_my_idea","fedora_the_explorer","Notch","oprahwindfury","chickenriceandbeans","buh-buh-bacon"
-
+           "shaquille.oatmeal","hanging_with_my_gnomies","fast_and_the_curious","google_was_my_idea","fedora_the_explorer","Notch","oprahwindfury","chickenriceandbeans","buh-buh-bacon",
+           "applebottomjeans","toastedbagelwithcreamcheese","baeconandeggz","bigfootisreal"
         };
 
         private void randomnameButton_Click(object sender, EventArgs e)
