@@ -16,7 +16,7 @@ public partial class MainForm : Form
     {
         InitializeComponent();
         
-        AddChatMessage("System", $"{Program.SvClient.Nick} has joined!");
+        AddChatMessage("System", $"{Program.SvClient.Nick} has joined!"); //Announce to the chat when a user joins using their Nickname
 
         VideoView_Loaded();
     }
@@ -135,7 +135,7 @@ public partial class MainForm : Form
         volMaxLabel.Text = $"{volumeBar.Value}%";
     }
 
-    private void chatEntryBox_KeyDown(object sender, KeyEventArgs e)
+    private void chatEntryBox_KeyDown(object sender, KeyEventArgs e) //Allow messages to be sent with the enter key
     {
         if (e.KeyCode != Keys.Enter || chatEntryBox.Text == "") return;
         var chatMessage = new ChatMessage
@@ -147,7 +147,7 @@ public partial class MainForm : Form
         chatEntryBox.Text = "";
     }
 
-    public void AddChatMessage(string nick, string msg)
+    public void AddChatMessage(string nick, string msg) //Adding the chat message including the users Nickname and the Date and Time
     {
         string msgStr = $"\n{DateTime.Now.ToShortTimeString()} | {nick} | {msg}";
         chatBox.AppendText(msgStr + Environment.NewLine);

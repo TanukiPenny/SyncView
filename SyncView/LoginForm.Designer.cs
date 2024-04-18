@@ -32,6 +32,7 @@
             nicknameBox = new TextBox();
             UsernameLabel = new Label();
             LoginButton = new Button();
+            randomnameButton = new Button();
             SuspendLayout();
             // 
             // nicknameBox
@@ -72,6 +73,17 @@
             LoginButton.UseVisualStyleBackColor = false;
             LoginButton.Click += LoginButton_Click;
             // 
+            // randomnameButton
+            // 
+            randomnameButton.BackColor = Color.White;
+            randomnameButton.Location = new Point(364, 242);
+            randomnameButton.Name = "randomnameButton";
+            randomnameButton.Size = new Size(102, 23);
+            randomnameButton.TabIndex = 5;
+            randomnameButton.Text = "Random";
+            randomnameButton.UseVisualStyleBackColor = false;
+            randomnameButton.Click += randomnameButton_Click;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -80,6 +92,7 @@
             BackgroundImage = Properties.Resources.SVLFINAL;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(825, 410);
+            Controls.Add(randomnameButton);
             Controls.Add(LoginButton);
             Controls.Add(UsernameLabel);
             Controls.Add(nicknameBox);
@@ -95,5 +108,6 @@
         private TextBox nicknameBox;
         private Label UsernameLabel;
         private Button LoginButton;
+        private Button randomnameButton;
     }
 }
