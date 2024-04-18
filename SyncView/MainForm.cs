@@ -1,6 +1,7 @@
 // PB, JP start
 using System.ComponentModel;
 using LibVLCSharp.Shared;
+using Serilog;
 using SVCommon;
 using SVCommon.Packet;
 
@@ -10,24 +11,24 @@ public partial class MainForm : Form
 {
     public Label CurrentHostLabel => currentHostLabel;
     public Label CurrentMediaLabel => currentMediaLabel;
-    
+
     public MainForm()
     {
         InitializeComponent();
         
-        // TODO: Send system message of your own join
+        AddChatMessage("System", $"{Program.SvClient.Nick} has joined!");
 
         VideoView_Loaded();
     }
-    
+
     protected override void OnFormClosing(FormClosingEventArgs e)
     {
         base.OnFormClosing(e);
 
         if (e.CloseReason == CloseReason.WindowsShutDown) return;
-        
+
         // Gotta really make sure its dead
-        Application.Exit();    
+        Application.Exit();
     }
 
 
@@ -49,7 +50,7 @@ public partial class MainForm : Form
         timeLeft.Text = timeLeftText;
 
         if (_mouseDown) return;
-        
+
         TimeSpan timePassedSpan = TimeSpan.FromMilliseconds(time);
         string timePassedText = timePassedSpan.ToString(@"hh\:mm\:ss");
         timePassed.Text = timePassedText;
@@ -65,7 +66,7 @@ public partial class MainForm : Form
         string timePassedText = timePassedSpan.ToString(@"hh\:mm\:ss");
         timePassed.Text = timePassedText;
     }
-    
+
     private void progressBar_MouseCaptureChanged(object sender, EventArgs e)
     {
         if (!Program.SvClient.IsHost) return;
@@ -132,6 +133,24 @@ public partial class MainForm : Form
     {
         Program.MediaManager.SetVolume(volumeBar.Value);
         volMaxLabel.Text = $"{volumeBar.Value}%";
+    }
+
+    private void chatEntryBox_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode != Keys.Enter || chatEntryBox.Text == "") return;
+        var chatMessage = new ChatMessage
+        {
+            Nick = Program.SvClient.Nick,
+            Message = chatEntryBox.Text
+        };
+        Program.SvClient.Send(chatMessage, MessageType.ChatMessage);
+        chatEntryBox.Text = "";
+    }
+
+    public void AddChatMessage(string nick, string msg)
+    {
+        string msgStr = $"\n{DateTime.Now.ToShortTimeString()} | {nick} | {msg}";
+        chatBox.AppendText(msgStr + Environment.NewLine);
     }
 }
 // PB, JP end

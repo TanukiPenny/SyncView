@@ -79,13 +79,39 @@ public class SvListener : PacketHandler<SvClient>
 
     public override void OnUserJoin(SvClient conn, UserJoin userJoin)
     {
-        // TODO: System messages for user joins in chat
+        if (Program.MainForm == null)
+        {
+            Log.Warning("Waiting for MainForm to be not null");
+            Utils.WaitForMainForm();
+        }
+
+        if (!Program.MainForm.IsHandleCreated)
+        {
+            Log.Warning("Waiting for MainForm handle to be created");
+            Utils.WaitForMainFormHandle();
+        }
+        
+        Program.MainForm.AddChatMessage("System", $"{userJoin.Nick} has joined!");
+        
         Log.Information("UserJoin received: {nick}", userJoin.Nick);
     }
 
     public override void OnUserLeave(SvClient conn, UserLeave userLeave)
     {
-        // TODO: System messages for user leaves in chat
+        if (Program.MainForm == null)
+        {
+            Log.Warning("Waiting for MainForm to be not null");
+            Utils.WaitForMainForm();
+        }
+
+        if (!Program.MainForm.IsHandleCreated)
+        {
+            Log.Warning("Waiting for MainForm handle to be created");
+            Utils.WaitForMainFormHandle();
+        }
+        
+        Program.MainForm.AddChatMessage("System", $"{userLeave.Nick} has left");
+        
         Log.Information("UserJoin received: {nick}", userLeave.Nick);
     }
 
@@ -112,6 +138,23 @@ public class SvListener : PacketHandler<SvClient>
     public override void OnPacketHandlerException(Exception exception, int packetId)
     {
         Log.Error(exception, "Exception in packet handler"); 
+    }
+
+    public override void OnChatMessage(SvClient conn, ChatMessage msg)
+    {
+        if (Program.MainForm == null)
+        {
+            Log.Warning("Waiting for MainForm to be not null");
+            Utils.WaitForMainForm();
+        }
+
+        if (!Program.MainForm.IsHandleCreated)
+        {
+            Log.Warning("Waiting for MainForm handle to be created");
+            Utils.WaitForMainFormHandle();
+        }
+        
+        Program.MainForm.AddChatMessage(msg.Nick, msg.Message);
     }
 }
 // PB end

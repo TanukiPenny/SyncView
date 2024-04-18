@@ -46,6 +46,8 @@ partial class MainForm
         currentMediaLabel = new Label();
         currentHostLabel = new Label();
         volumeLabel = new Label();
+        chatEntryBox = new TextBox();
+        chatBox = new TextBox();
         ((System.ComponentModel.ISupportInitialize)videoView).BeginInit();
         ((System.ComponentModel.ISupportInitialize)progressBar).BeginInit();
         ((System.ComponentModel.ISupportInitialize)volumeBar).BeginInit();
@@ -251,12 +253,36 @@ partial class MainForm
         volumeLabel.TabIndex = 26;
         volumeLabel.Text = "Volume";
         // 
+        // chatEntryBox
+        // 
+        chatEntryBox.BackColor = Color.FromArgb(90, 106, 80);
+        chatEntryBox.Font = new Font("Segoe UI", 10F);
+        chatEntryBox.ForeColor = Color.White;
+        chatEntryBox.Location = new Point(1236, 760);
+        chatEntryBox.Name = "chatEntryBox";
+        chatEntryBox.Size = new Size(328, 25);
+        chatEntryBox.TabIndex = 28;
+        chatEntryBox.KeyDown += chatEntryBox_KeyDown;
+        // 
+        // chatBox
+        // 
+        chatBox.BackColor = Color.FromArgb(90, 106, 80);
+        chatBox.Font = new Font("Segoe UI", 10F);
+        chatBox.ForeColor = Color.White;
+        chatBox.Location = new Point(1236, 20);
+        chatBox.Multiline = true;
+        chatBox.Name = "chatBox";
+        chatBox.Size = new Size(328, 737);
+        chatBox.TabIndex = 29;
+        // 
         // MainForm
         // 
         AutoScaleMode = AutoScaleMode.None;
         BackgroundImage = Properties.Resources.FINALBACKGROUND;
         BackgroundImageLayout = ImageLayout.Stretch;
         ClientSize = new Size(1584, 861);
+        Controls.Add(chatBox);
+        Controls.Add(chatEntryBox);
         Controls.Add(volumeLabel);
         Controls.Add(currentHostLabel);
         Controls.Add(currentMediaLabel);
@@ -306,4 +332,6 @@ partial class MainForm
     private Label currentMediaLabel;
     private Label currentHostLabel;
     private Label volumeLabel;
+    private TextBox chatEntryBox;
+    private TextBox chatBox;
 }
