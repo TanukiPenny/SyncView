@@ -84,7 +84,7 @@ public partial class MainForm : Form
     {
         _mouseDown = false;
     }
-    private void playButton_Click(object sender, EventArgs e)
+    private void playButton_Click(object sender, EventArgs e) //allows users to play a video
     {
         if (!Program.SvClient.IsHost) return;
         if (Program.MediaManager.Player.IsPlaying) return;
@@ -121,13 +121,13 @@ public partial class MainForm : Form
         Program.SvClient.Send(new Stop(), MessageType.Stop);
     }
 
-    private void mediaSelectorButton_Click(object sender, EventArgs e)
+    private void mediaSelectorButton_Click(object sender, EventArgs e) //allows users to select different files to play
     {
         MediaSelector mediaSelector = new MediaSelector();
         mediaSelector.ShowDialog();
     }
 
-    private void volumeBar_ValueChanged(object sender, EventArgs e)
+    private void volumeBar_ValueChanged(object sender, EventArgs e) //allows users to adjust the volume
     {
         Program.MediaManager.SetVolume(volumeBar.Value);
         volMaxLabel.Text = $"{volumeBar.Value}%";
