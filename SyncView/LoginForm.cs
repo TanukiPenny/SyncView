@@ -1,4 +1,4 @@
-﻿// JK, PB start
+// JK, PB start
 using System.Net.Mime;
 using SVCommon.Packet;
 
@@ -13,15 +13,17 @@ namespace SyncView
 
         private void LoginButton_Click(object sender, EventArgs e) //takes users to the main page
         {
+            // Connect and send login packet
             Program.SvClient.Connect();
             Program.SvClient.Login(nicknameBox.Text);
         }
 
         public void HandleLoginResult(LoginResponse loginResponse) //determines whether the connection to the program is successful or not
         {
+            // if we succeed hide this form and start fully, else show an error 
             if (loginResponse.Success)
             {
-                Program.LoginForm.Invoke((MethodInvoker)Hide);
+                Program.LoginForm.Invoke(Hide);
                 Program.StartFully();
             }
             else
@@ -47,12 +49,6 @@ namespace SyncView
             Random rand = new Random();
             int index = rand.Next(randomNicknames.Count);
             return randomNicknames[index];
-        }
-        //MB end
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

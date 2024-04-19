@@ -25,6 +25,7 @@ public partial class MediaSelector : Form
         RequestAvailableMedia();
     }
 
+    // Very, very horrible way of parsing the web server for links
     private void RequestAvailableMedia()
     {
         HtmlWeb web = new HtmlWeb();
@@ -38,8 +39,10 @@ public partial class MediaSelector : Form
         }
     }
 
+    // Handle what the user selects
     private void mediaList_DoubleClick(object sender, EventArgs e)
     {
+        // If the selected item is valid send to media manager and close form
         if (mediaList.SelectedItem != null)
         {
             Program.MediaManager.NewMediaSelected((Uri)mediaList.SelectedItem);

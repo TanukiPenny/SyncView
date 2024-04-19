@@ -9,6 +9,9 @@ namespace SyncView;
 
 public class SvListener : PacketHandler<SvClient>
 {
+
+    #region Packet Overrides
+
     public override void OnPing(SvClient conn)
     {
         conn.SendPing();
@@ -22,8 +25,7 @@ public class SvListener : PacketHandler<SvClient>
 
     public override void OnLoginResponse(SvClient conn, LoginResponse loginResponse)
     {
-
-        
+        // Send response to login form and set host to the client
         Task.Run(() =>
         {
             Program.LoginForm.HandleLoginResult(loginResponse);
@@ -40,6 +42,7 @@ public class SvListener : PacketHandler<SvClient>
 
     public override void OnHostChange(SvClient conn, HostChange hostChange)
     {
+        // if we are new host set that true
         if (conn.Nick == hostChange.Nick)
         {
             conn.IsHost = true;
@@ -57,6 +60,7 @@ public class SvListener : PacketHandler<SvClient>
             Utils.WaitForMainFormHandle();
         }
         
+        // Correct host label
         Program.MainForm.Invoke(() =>
         {
             Program.MainForm.CurrentHostLabel.Text = $"Current Host: {hostChange.Nick}";
@@ -67,6 +71,7 @@ public class SvListener : PacketHandler<SvClient>
     
     public override void OnPlay(SvClient conn, Play play)
     {
+        // Play the new media received
         Program.MediaManager.CurrentMedia = play.Uri;
         Program.MediaManager.Play();
         Log.Information("Play received: {playUri}", play.Uri);
@@ -74,6 +79,7 @@ public class SvListener : PacketHandler<SvClient>
 
     public override void OnTimeSync(SvClient conn, TimeSync timeSync)
     {
+        // Send time sync to media manager
         Program.MediaManager.HandleTimeSync(timeSync);
         Log.Verbose("TimeSync received: {timeSyncTime}", timeSync.Time);
     }
@@ -92,6 +98,7 @@ public class SvListener : PacketHandler<SvClient>
             Utils.WaitForMainFormHandle();
         }
 
+        // Send system message to chat
         Program.MainForm.Invoke(() =>
         {
             Program.MainForm.AddChatMessage("System", $"{userJoin.Nick} has joined!");
@@ -114,6 +121,7 @@ public class SvListener : PacketHandler<SvClient>
             Utils.WaitForMainFormHandle();
         }
 
+        // Send system message to chat
         Program.MainForm.Invoke(() =>
         {
             Program.MainForm.AddChatMessage("System", $"{userLeave.Nick} has left");
@@ -161,10 +169,13 @@ public class SvListener : PacketHandler<SvClient>
             Utils.WaitForMainFormHandle();
         }
 
+        // Send chat message to chat
         Program.MainForm.Invoke(() =>
         {
             Program.MainForm.AddChatMessage(msg.Nick, msg.Message);
         });
     }
+
+    #endregion
 }
 // PB end

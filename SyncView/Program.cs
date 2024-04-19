@@ -18,17 +18,20 @@ static class Program
     {
         // AllocConsole();
         
+        // Create logger
         Log.Logger = new LoggerConfiguration().WriteTo.Console(outputTemplate:
             "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}").MinimumLevel.Debug().CreateLogger();
         
         ApplicationConfiguration.Initialize();
         
+        // Start the login form
         Application.Run(LoginForm);
         //LoginForm will run first, then once a user enters their name and a connection is established MainForm will run
     }
 
     public static void StartFully()
     {
+        // Create and start the main form
         MainForm = new MainForm();
         Application.Run(MainForm);
     }

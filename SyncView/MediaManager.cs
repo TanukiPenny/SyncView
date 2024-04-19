@@ -20,20 +20,25 @@ public class MediaManager
     public MediaManager()
     {
         Player = new(_libVlc);
+        
+        // Add callback for OnPlaying
         Player.Playing += OnPlaying;
         
+        // Start threads for syncing
         _timeUpdateThread = new Thread(TimeUpdateLoop);
         _timeUpdateThread.Start();
         _syncLoopThread = new Thread(SyncLoop);
         _syncLoopThread.Start();
     }
 
+    // Stop and set new media
     public void NewMediaSelected(Uri uri)
     {
         Stop();
         CurrentMedia = uri;
     }
     
+    // Triggers when playback starts
     private void OnPlaying(object? sender, EventArgs e)
     {
         if (Program.MainForm == null)
@@ -48,12 +53,14 @@ public class MediaManager
             Utils.WaitForMainFormHandle();
         }
         
+        // Set proper media label
         Program.MainForm.Invoke(() =>
         {
             Program.MainForm.CurrentMediaLabel.Text = $"Current Media: {CurrentMedia.ToString()}";
         });
     }
     
+    // Correct playback time
     public void HandleTimeSync(TimeSync timeSync)
     {
         Log.Verbose("Handling time sync");
@@ -64,6 +71,7 @@ public class MediaManager
         }
     }
     
+    // Runs in a thread to update the time display
     private void TimeUpdateLoop()
     {
         if (Program.MainForm == null)
@@ -83,6 +91,7 @@ public class MediaManager
         {
             if (!Player.IsPlaying) continue;
 
+            // Update the time display
             Program.MainForm.Invoke(() =>
             {
                 Program.MainForm.VideoDataUpdate(Player.Time ,Player.Length);
@@ -92,16 +101,19 @@ public class MediaManager
         // ReSharper disable once FunctionNeverReturns
     }
     
+    // Runs in a thread to send syncing data
     private void SyncLoop()
     {
         Log.Information("Media time sync started");
         while (true)
         {
+            // Only run is we are playing and are host
             if (!Player.IsPlaying) continue;
             if (!Program.SvClient.IsHost) continue;
             
             Log.Verbose("Sending time sync");
             
+            // Send da time sync
             var timeSync = new TimeSync
             {
                 Time = Player.Time
@@ -112,17 +124,21 @@ public class MediaManager
         // ReSharper disable once FunctionNeverReturns
     }
     
+    // Plays da media
     public void Play()
     {
+        // Don't if media is null
         if (CurrentMedia == null) return;
-
+        
         Media media = new Media(_libVlc, CurrentMedia);
         Player.Play(media);
 
+        // If we are host we stop here
         if (!Program.SvClient.IsHost) return;
         
         Log.Information("Sending new media");
         
+        // Send new media to other users
         var play = new Play
         {
             Uri = CurrentMedia
@@ -134,7 +150,9 @@ public class MediaManager
     {
         Player.Pause();
 
+        // Only send pause if we are host
         if (!Program.SvClient.IsHost) return;
+        
         Program.SvClient.Send(new Pause(), MessageType.Pause);
     }
     
@@ -152,11 +170,13 @@ public class MediaManager
             Utils.WaitForMainFormHandle();
         }
         
+        // Reset media label
         Program.MainForm.Invoke(() =>
         {
             Program.MainForm.CurrentMediaLabel.Text = "Current Media: None";
         });
         
+        // Actually stop the player
         CurrentMedia = null;
         Player.Stop();
     }

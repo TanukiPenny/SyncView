@@ -25,8 +25,6 @@ public partial class MainForm : Form
     {
         base.OnFormClosing(e);
 
-        if (e.CloseReason == CloseReason.WindowsShutDown) return;
-
         // Gotta really make sure its dead
         Application.Exit();
     }
@@ -34,8 +32,8 @@ public partial class MainForm : Form
 
     private void VideoView_Loaded()
     {
+        // Prepare the player and video view
         Core.Initialize();
-
         videoView.MediaPlayer = Program.MediaManager.Player;
     }
 
@@ -73,21 +71,27 @@ public partial class MainForm : Form
         Program.MediaManager.SeekTo(_tempTime);
     }
 
+    // Store mouse state
     private bool _mouseDown;
 
+    // handles mouse state changes
     private void progressBar_MouseDown(object sender, EventArgs e)
     {
         _mouseDown = true;
     }
 
+    // handles mouse state changes
     private void progressBar_MouseUp(object sender, EventArgs e)
     {
         _mouseDown = false;
     }
-    private void playButton_Click(object sender, EventArgs e) //allows users to play a video
+    
+    private void playButton_Click(object sender, EventArgs e)
     {
+        // Only continue if we are host and are not playing`
         if (!Program.SvClient.IsHost) return;
         if (Program.MediaManager.Player.IsPlaying) return;
+        
         if (Program.MediaManager.Player.Time > 0)
         {
             Program.MediaManager.Pause();
@@ -98,6 +102,7 @@ public partial class MainForm : Form
 
     private void pauseButton_Click(object sender, EventArgs e) //allows users to pause with a button
     {
+        // Only respect pause click if we are playing and are host
         if (!Program.MediaManager.Player.IsPlaying) return;
         if (!Program.SvClient.IsHost) return;
         Program.MediaManager.Pause();
@@ -105,17 +110,20 @@ public partial class MainForm : Form
 
     private void skipForward30Button_Click(object sender, EventArgs e) //30 second fast foward
     {
+        // Only respect click if we are host
         if (!Program.SvClient.IsHost) return;
         Program.MediaManager.SeekTo(Program.MediaManager.Player.Time + 30000);
     }
     private void SkipBack10ButtonClick(object sender, EventArgs e) //10 second rewind
     {
+        // Only respect click if we are host
         if (!Program.SvClient.IsHost) return;
         Program.MediaManager.SeekTo(Program.MediaManager.Player.Time - 10000);
     }
 
     private void stopButton_Click(object sender, EventArgs e) //allows users to stop the video entierly
     {
+        // Only respect click if we are host
         if (!Program.SvClient.IsHost) return;
         Program.MediaManager.Stop();
         Program.SvClient.Send(new Stop(), MessageType.Stop);
@@ -123,6 +131,7 @@ public partial class MainForm : Form
 
     private void mediaSelectorButton_Click(object sender, EventArgs e) //allows users to select different files to play
     {
+        // Create media selector and show it
         MediaSelector mediaSelector = new MediaSelector();
         mediaSelector.ShowDialog();
     }
@@ -135,6 +144,7 @@ public partial class MainForm : Form
 
     private void chatEntryBox_KeyDown(object sender, KeyEventArgs e) //Allow messages to be sent with the enter key
     {
+        // if we hit enter and chat is not empty send the message and reset text box
         if (e.KeyCode != Keys.Enter || chatEntryBox.Text == "") return;
         var chatMessage = new ChatMessage
         {
@@ -147,6 +157,7 @@ public partial class MainForm : Form
 
     public void AddChatMessage(string nick, string msg) //Adding the chat message including the users Nickname and the Date and Time
     {
+        // Format and add line to text box
         string msgStr = $"\n{DateTime.Now.ToShortTimeString()} | {nick} | {msg}";
         chatBox.AppendText(msgStr + Environment.NewLine);
     }

@@ -25,11 +25,13 @@ public class SvClient : TcpClient
         _framer.MessageReceived += FramerReceivedData;
     }
 
+    // Connect to server
     public void Connect()
     {
         Connect("15.204.205.117", 9052);
     }
 
+    // Send login packet
     public void Login(string nick)
     {
         Nick = nick;
@@ -55,27 +57,33 @@ public class SvClient : TcpClient
         Disconnect();
     }
 
+    // Override to hand incoming data to the framer
     protected override void ReceiveData(byte[] buffer, int length)
     {
         _framer.ReceiveData(buffer, length);
     }
 
+    // Parse data after framed
     private void FramerReceivedData(byte[] bytes)
     {
+        // If less then the size of an int then return, not good data
         if (bytes.Length < sizeof(int))
         {
             return;
         }
 
+        // Get packet id from first bytes
         int packetId = BitConverter.ToInt32(bytes, 0);
 
+        // Make array of data after packet id
         byte[] finalBytes = new byte[bytes.Length - sizeof(Int32)];
-
         Array.Copy(bytes, sizeof(Int32), finalBytes, 0, finalBytes.Length);
 
+        // Send to packet handler
         _listener.HandlePacket(this, finalBytes, packetId);
     }
 
+    // Send ping
     public void SendPing()
     {
         List<byte> bytes = new();
@@ -84,6 +92,7 @@ public class SvClient : TcpClient
         Send(_framer.Frame(bytes.ToArray()));
     }
 
+    // Send packet
     public void Send<T>(T obj, MessageType packetId)
     {
         List<byte> bytes = new();
