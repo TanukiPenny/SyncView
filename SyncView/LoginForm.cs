@@ -11,13 +11,13 @@ namespace SyncView
             InitializeComponent();
         }
 
-        private void LoginButton_Click(object sender, EventArgs e)
+        private void LoginButton_Click(object sender, EventArgs e) //takes users to the main page
         {
             Program.SvClient.Connect();
             Program.SvClient.Login(nicknameBox.Text);
         }
 
-        public void HandleLoginResult(LoginResponse loginResponse)
+        public void HandleLoginResult(LoginResponse loginResponse) //determines whether the connection to the program is successful or not
         {
             if (loginResponse.Success)
             {
@@ -30,7 +30,7 @@ namespace SyncView
             }
 
         }
-        //MB
+        //MB start
         private List<string> randomNicknames = new List<string> //list of random users
 
         {
@@ -38,7 +38,7 @@ namespace SyncView
            "applebottomjeans","toastedbagelwithcreamcheese","baeconandeggz","bigfootisreal","PeterGriffin"
         };
 
-        private void randomnameButton_Click(object sender, EventArgs e)
+        private void randomnameButton_Click(object sender, EventArgs e) //allows users to choose a random nickname
         {
             nicknameBox.Text = GetRandomNicknames();
         }
@@ -48,6 +48,7 @@ namespace SyncView
             int index = rand.Next(randomNicknames.Count);
             return randomNicknames[index];
         }
+        //MB end
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
