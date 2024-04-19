@@ -35,7 +35,7 @@ namespace SyncView
 
         {
            "shaquille.oatmeal","hanging_with_my_gnomies","fast_and_the_curious","google_was_my_idea","fedora_the_explorer","notch","oprahwindfury","chickenriceandbeans","buh-buh-bacon",
-           "applebottomjeans","toastedbagelwithcreamcheese","baeconandeggz","bigfootisreal"
+           "applebottomjeans","toastedbagelwithcreamcheese","baeconandeggz","bigfootisreal","PeterGriffin"
         };
 
         private void randomnameButton_Click(object sender, EventArgs e)
