@@ -23,7 +23,8 @@ static class Program
         
         ApplicationConfiguration.Initialize();
         
-        Application.Run(LoginForm); //LoginForm will run first, then once a connection is established MainForm will run
+        Application.Run(LoginForm);
+        //LoginForm will run first, then once a user enters their name and a connection is established MainForm will run
     }
 
     public static void StartFully()
