@@ -146,10 +146,13 @@ public partial class MainForm : Form
     {
         // if we hit enter and chat is not empty send the message and reset text box
         if (e.KeyCode != Keys.Enter || chatEntryBox.Text == "") return;
+        e.Handled = true;
+        e.SuppressKeyPress = true;
         var chatMessage = new ChatMessage
         {
             Nick = Program.SvClient.Nick,
-            Message = chatEntryBox.Text
+            Message = chatEntryBox.Text,
+            
         };
         Program.SvClient.Send(chatMessage, MessageType.ChatMessage);
         chatEntryBox.Text = "";
